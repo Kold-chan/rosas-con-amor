@@ -1,30 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rosas con Amor 🌹</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --rose:    #e8637a;
-      --blush:   #f9dde3;
-      --cream:   #fdf6f0;
-      --gold:    #c9a96e;
-      --deep:    #5c2d3e;
-      --soft:    #f4b8c5;
+      --rose:  #e8637a;
+      --blush: #f9dde3;
+      --cream: #fdf6f0;
+      --gold:  #c9a96e;
+      --deep:  #5c2d3e;
+      --soft:  #f4b8c5;
     }
+    body { background: var(--cream); font-family: 'Lato', sans-serif; color: var(--deep); min-height: 100vh; }
 
-    body {
-      background: var(--cream);
-      font-family: 'Lato', sans-serif;
-      color: var(--deep);
-      min-height: 100vh;
-    }
-
-    /* ── HEADER ───────────────────────────────── */
+    /* ── HEADER ── */
     header {
       background: linear-gradient(135deg, #fce4ec 0%, #fff0f3 40%, #fce4ec 100%);
       border-bottom: 2px solid var(--soft);
@@ -33,428 +26,551 @@
       position: relative;
       overflow: hidden;
     }
-    header::before, header::after {
-      content: '🌸';
-      font-size: 80px;
-      position: absolute;
-      top: 10px;
-      opacity: 0.18;
+    header::before, header::after { content:'🌸'; font-size:80px; position:absolute; top:10px; opacity:.18; }
+    header::before { left:30px; }
+    header::after  { right:30px; }
+
+    /* Botón invisible sobre florecita izquierda */
+    #secret-btn {
+      position: absolute; left: 22px; top: 18px;
+      width: 70px; height: 70px; border-radius: 50%;
+      background: transparent; border: none;
+      cursor: default; z-index: 10; opacity: 0;
     }
-    header::before { left: 30px; }
-    header::after  { right: 30px; }
 
     .logo-ring {
-      width: 90px; height: 90px;
-      border-radius: 50%;
-      border: 3px solid var(--gold);
-      background: var(--blush);
+      width: 90px; height: 90px; border-radius: 50%;
+      border: 3px solid var(--gold); background: var(--blush);
       display: flex; align-items: center; justify-content: center;
-      font-size: 38px;
-      margin: 0 auto 18px;
+      font-size: 38px; margin: 0 auto 18px;
       box-shadow: 0 4px 18px rgba(201,169,110,.25);
+      transition: box-shadow .3s; position: relative; z-index: 1;
     }
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      color: var(--deep);
-      letter-spacing: .02em;
-    }
-    header h1 span { color: var(--rose); font-style: italic; }
-    header p {
-      margin-top: 8px;
-      font-size: .95rem;
-      color: #a0607a;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
+    .logo-ring.admin-glow { box-shadow: 0 0 0 3px var(--rose), 0 4px 22px rgba(232,99,122,.4); }
 
-    /* ── GALLERY GRID ─────────────────────────── */
-    main {
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 0 24px 60px;
-    }
+    header h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.2rem); color:var(--deep); letter-spacing:.02em; }
+    header h1 span { color:var(--rose); font-style:italic; }
+    header p { margin-top:8px; font-size:.95rem; color:#a0607a; letter-spacing:.08em; text-transform:uppercase; }
 
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      color: var(--deep);
-      text-align: center;
-      margin-bottom: 36px;
-    }
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 60px; height: 2px;
-      background: var(--gold);
-      margin: 10px auto 0;
-      border-radius: 2px;
-    }
+    /* ── MAIN ── */
+    main { max-width:1200px; margin:50px auto; padding:0 24px 60px; }
+    .section-title { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--deep); text-align:center; margin-bottom:36px; }
+    .section-title::after { content:''; display:block; width:60px; height:2px; background:var(--gold); margin:10px auto 0; border-radius:2px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:32px; }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 32px;
-    }
+    /* ── CARD ── */
+    .card { background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 6px 28px rgba(92,45,62,.10); transition:transform .3s,box-shadow .3s; display:flex; flex-direction:column; }
+    .card:hover { transform:translateY(-6px); box-shadow:0 14px 40px rgba(92,45,62,.18); }
+    .card-photo { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:var(--blush); }
+    .card-placeholder { width:100%; aspect-ratio:1/1; background:linear-gradient(135deg,#fce4ec,#f8bbd0); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:#c0718a; }
+    .card-placeholder span { font-size:52px; }
+    .card-placeholder p { font-size:.8rem; letter-spacing:.06em; text-transform:uppercase; }
+    .card-body { padding:22px 22px 26px; flex:1; display:flex; flex-direction:column; gap:12px; }
+    .card-name { font-family:'Playfair Display',serif; font-size:1.25rem; color:var(--deep); }
+    .detail-list { list-style:none; display:flex; flex-direction:column; gap:7px; }
+    .detail-list li { display:flex; align-items:flex-start; gap:10px; font-size:.87rem; color:#6b3a50; line-height:1.45; }
+    .detail-list li .icon { font-size:1rem; flex-shrink:0; margin-top:1px; }
+    .detail-list li strong { color:var(--deep); font-weight:600; }
+    .color-dots { display:flex; flex-wrap:wrap; gap:6px; margin-top:2px; }
+    .dot { width:18px; height:18px; border-radius:50%; border:1.5px solid rgba(0,0,0,.12); display:inline-block; }
+    .price-badge { display:inline-flex; align-items:center; gap:5px; background:linear-gradient(90deg,var(--rose),#d4527a); color:#fff; font-size:.95rem; font-weight:700; padding:5px 14px; border-radius:30px; letter-spacing:.03em; margin-top:auto; align-self:flex-start; }
+    .tag { display:inline-block; font-size:.75rem; padding:3px 10px; border-radius:20px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; }
+    .tag.disponible { background:#e8f5e9; color:#388e3c; }
+    .tag.agotado    { background:#fce4ec; color:#c62828; }
+    .tag.encargo    { background:#fff8e1; color:#f57f17; }
+    .tag.vendido    { background:#ede7f6; color:#6a1b9a; }
+    .admin-bar-card { display:none; justify-content:flex-end; padding:8px 12px 0; }
+    .show-admin-controls .admin-bar-card { display:flex; }
+    .btn-del { background:#fce4ec; color:#c62828; border:none; border-radius:20px; font-size:.75rem; font-weight:700; padding:4px 12px; cursor:pointer; }
+    .btn-del:hover { background:#c62828; color:#fff; }
 
-    /* ── CARD ─────────────────────────────────── */
-    .card {
-      background: #fff;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 6px 28px rgba(92,45,62,.10);
-      transition: transform .3s ease, box-shadow .3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 14px 40px rgba(92,45,62,.18);
-    }
+    /* ── FOOTER ── */
+    footer { text-align:center; padding:28px 16px; background:var(--blush); border-top:1px solid var(--soft); font-size:.82rem; color:#a0607a; letter-spacing:.06em; }
+    footer a { color:var(--rose); text-decoration:none; }
 
-    .card-photo {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      display: block;
-      background: var(--blush);
-    }
+    /* ── ADMIN BAR ── */
+    #admin-top { display:none; background:linear-gradient(90deg,var(--deep),#8b3a5a); color:#fff; padding:10px 20px; font-size:.85rem; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:200; }
+    #admin-top.on { display:flex; }
+    .atbtn { background:rgba(255,255,255,.18); border:none; color:#fff; border-radius:20px; padding:5px 14px; cursor:pointer; font-size:.82rem; font-weight:700; margin-left:8px; }
+    .atbtn:hover { background:rgba(255,255,255,.32); }
+    .atbtn.gold { background:linear-gradient(90deg,#c9a96e,#e0c080); color:var(--deep); }
 
-    /* placeholder when no image */
-    .card-photo-placeholder {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 8px;
-      color: #c0718a;
+    /* ── LOADING OVERLAY ── */
+    #loading {
+      display:none; position:fixed; inset:0;
+      background:rgba(253,246,240,.85); backdrop-filter:blur(3px);
+      z-index:9999; flex-direction:column;
+      align-items:center; justify-content:center; gap:16px;
     }
-    .card-photo-placeholder span { font-size: 52px; }
-    .card-photo-placeholder p   { font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; }
+    #loading.on { display:flex; }
+    .spinner {
+      width:48px; height:48px; border:4px solid var(--soft);
+      border-top-color:var(--rose); border-radius:50%;
+      animation:spin .8s linear infinite;
+    }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    #loading p { font-family:'Playfair Display',serif; color:var(--deep); font-size:1rem; }
 
-    .card-body {
-      padding: 22px 22px 26px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+    /* ═══ MODALES ═══ */
+    .overlay { display:none; position:fixed; inset:0; background:rgba(92,45,62,.45); backdrop-filter:blur(4px); z-index:500; align-items:center; justify-content:center; padding:16px; }
+    .overlay.on { display:flex; }
+    .mbox { background:#fff; border-radius:22px; padding:36px 32px; width:100%; max-width:420px; box-shadow:0 20px 60px rgba(92,45,62,.25); position:relative; animation:popIn .22s ease; }
+    @keyframes popIn { from{transform:scale(.9);opacity:0} to{transform:scale(1);opacity:1} }
+    .mbox h2 { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--deep); margin-bottom:20px; text-align:center; }
+    .mclose { position:absolute; top:14px; right:18px; background:none; border:none; font-size:1.4rem; color:#bbb; cursor:pointer; }
+    .mclose:hover { color:var(--rose); }
 
-    .card-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      color: var(--deep);
-    }
+    /* PIN */
+    #pin-disp { font-size:2.6rem; letter-spacing:.5em; text-align:center; color:var(--deep); min-height:52px; margin-bottom:20px; font-family:'Playfair Display',serif; }
+    .pgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; max-width:230px; margin:0 auto; }
+    .pbtn { background:var(--blush); border:none; border-radius:14px; font-size:1.3rem; font-weight:700; color:var(--deep); padding:14px 0; cursor:pointer; transition:background .15s; }
+    .pbtn:hover { background:var(--soft); }
+    .pbtn.z { grid-column:2; }
+    .pbtn.d { background:#fce4ec; color:#c62828; }
+    #pin-err { text-align:center; color:#c62828; font-size:.85rem; margin-top:12px; min-height:20px; }
 
-    /* detail list */
-    .detail-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .detail-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: .88rem;
-      color: #6b3a50;
-      line-height: 1.45;
-    }
-    .detail-list li .icon {
-      font-size: 1rem;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .detail-list li strong {
-      color: var(--deep);
-      font-weight: 600;
-    }
+    /* ADD MODAL */
+    #modal-add .mbox { max-width:560px; max-height:92vh; overflow-y:auto; }
+    .fsec { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--deep); margin:18px 0 10px; border-bottom:1px solid var(--blush); padding-bottom:5px; }
+    .frow { display:flex; flex-direction:column; gap:5px; margin-bottom:13px; }
+    .frow label { font-size:.8rem; font-weight:700; color:var(--deep); letter-spacing:.04em; text-transform:uppercase; }
+    .frow input, .frow select { border:1.5px solid #f0c4d0; border-radius:10px; padding:9px 13px; font-size:.92rem; font-family:'Lato',sans-serif; color:var(--deep); background:#fff; outline:none; transition:border-color .2s; }
+    .frow input:focus, .frow select:focus { border-color:var(--rose); }
 
-    /* color dots */
-    .color-dots {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 2px;
-    }
-    .dot {
-      width: 18px; height: 18px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(0,0,0,.12);
-      display: inline-block;
-    }
+    /* color builder */
+    .cbuilder { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+    .cbuilder input[type=color] { width:36px; height:36px; border:none; border-radius:50%; cursor:pointer; padding:0; background:none; }
+    .cbuilder input[type=text]  { flex:1; min-width:90px; }
+    #c-chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+    .chip { display:flex; align-items:center; gap:4px; background:var(--blush); border-radius:20px; padding:3px 10px 3px 4px; font-size:.78rem; color:var(--deep); }
+    .chip .cdot { width:14px; height:14px; border-radius:50%; border:1px solid rgba(0,0,0,.12); flex-shrink:0; }
+    .chip button { background:none; border:none; color:#c62828; cursor:pointer; font-size:.8rem; padding:0 0 0 3px; }
 
-    /* price badge */
-    .price-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: linear-gradient(90deg, var(--rose), #d4527a);
-      color: #fff;
-      font-size: .95rem;
-      font-weight: 700;
-      padding: 5px 14px;
-      border-radius: 30px;
-      letter-spacing: .03em;
-      margin-top: auto;
-      align-self: flex-start;
-    }
+    /* photo zone */
+    .pzone { border:2px dashed #f0c4d0; border-radius:14px; padding:20px; text-align:center; cursor:pointer; transition:border-color .2s,background .2s; position:relative; }
+    .pzone:hover, .pzone.dg { border-color:var(--rose); background:#fff0f3; }
+    .pzone input { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
+    .pzone .pzi { font-size:2rem; }
+    .pzone p { font-size:.82rem; color:#a0607a; margin-top:5px; }
+    #photo-prev { width:100%; max-height:200px; object-fit:cover; border-radius:10px; margin-top:10px; display:none; }
 
-    /* availability tag */
-    .tag {
-      display: inline-block;
-      font-size: .75rem;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-weight: 600;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-    }
-    .tag.disponible  { background: #e8f5e9; color: #388e3c; }
-    .tag.agotado     { background: #fce4ec; color: #c62828; }
-    .tag.encargo     { background: #fff8e1; color: #f57f17; }
+    /* progress bar */
+    #upload-progress { display:none; margin-top:10px; }
+    #upload-progress .bar-bg { background:#f0c4d0; border-radius:10px; height:8px; overflow:hidden; }
+    #upload-progress .bar-fill { background:linear-gradient(90deg,var(--rose),#d4527a); height:100%; width:0%; transition:width .3s; border-radius:10px; }
+    #upload-progress p { font-size:.78rem; color:#a0607a; text-align:center; margin-top:4px; }
 
-    /* ── FOOTER ───────────────────────────────── */
-    footer {
-      text-align: center;
-      padding: 28px 16px;
-      background: var(--blush);
-      border-top: 1px solid var(--soft);
-      font-size: .82rem;
-      color: #a0607a;
-      letter-spacing: .06em;
-    }
-    footer a { color: var(--rose); text-decoration: none; }
+    .btnp { width:100%; padding:13px; margin-top:6px; background:linear-gradient(90deg,var(--rose),#d4527a); color:#fff; border:none; border-radius:30px; font-size:1rem; font-weight:700; cursor:pointer; letter-spacing:.04em; transition:opacity .2s; }
+    .btnp:hover { opacity:.88; }
+    .btnp:disabled { opacity:.5; cursor:not-allowed; }
+    #ferr { color:#c62828; font-size:.83rem; text-align:center; margin-top:8px; min-height:18px; }
+
+    /* empty */
+    .empty { text-align:center; color:#c0718a; padding:60px 20px; grid-column:1/-1; }
+    .empty .big { font-size:3rem; }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     CABECERA
-════════════════════════════════════════════ -->
+<!-- LOADING -->
+<div id="loading">
+  <div class="spinner"></div>
+  <p id="loading-text">Cargando ramos…</p>
+</div>
+
+<!-- ADMIN BAR -->
+<div id="admin-top">
+  <span>🔐 Modo Admin — Rosas con Amor</span>
+  <div>
+    <button class="atbtn gold" onclick="openAdd()">＋ Añadir Ramo</button>
+    <button class="atbtn" onclick="exitAdmin()">Salir</button>
+  </div>
+</div>
+
+<!-- HEADER -->
 <header>
-  <div class="logo-ring">🌹</div>
+  <button id="secret-btn" onclick="openPin()" tabindex="-1" aria-hidden="true"></button>
+  <div class="logo-ring" id="logo-ring">🌹</div>
   <h1>Rosas <span>con Amor</span></h1>
   <p>Ramos hechos con amor &nbsp;💕&nbsp; @rosas_con_amor.cv</p>
 </header>
 
-<!-- ═══════════════════════════════════════════
-     GALERÍA DE RAMOS
-     ─────────────────────────────────────────
-     CÓMO AÑADIR UN RAMO:
-     1. Copia un bloque <article class="card"> completo
-     2. Cambia la imagen, nombre y detalles
-     3. Para la foto: pon la ruta del archivo o URL en src=""
-        Ejemplo local:  src="fotos/ramo1.jpg"
-        Ejemplo URL:    src="https://..."
-        Sin foto:       borra el <img> y descomenta el bloque placeholder
-════════════════════════════════════════════ -->
 <main>
   <h2 class="section-title">Nuestros Ramos 🌸</h2>
-
-  <div class="grid">
-
-    <!-- ══ RAMO 1 ══════════════════════════════ -->
-    <article class="card">
-      <!-- FOTO: cambia src por la ruta de tu imagen -->
-      <img class="card-photo" src="fotos/ramo1.jpg" alt="Ramo corazón rosa y blanco"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-      <!-- Placeholder automático si no hay foto -->
-      <div class="card-photo-placeholder" style="display:none">
-        <span>🌹</span><p>Añade tu foto aquí</p>
-      </div>
-
-      <div class="card-body">
-        <h3 class="card-name">Ramo En Tonos Morados</h3>
-
-        <ul class="detail-list">
-          <li>
-            <span class="icon">🌹</span>
-            <div><strong>Flores:</strong> 30 Flores De Jabón</div>
-          </li>
-          <li>
-            <span class="icon">🎨</span>
-            <div>
-              <strong>Colores:</strong>
-              <div class="color-dots">
-                <span class="dot" style="background:#F5F2F4" title="Blanco"></span>
-                <span class="dot" style="background:#E9C3D3" title="Rosa claro"></span>
-                <span class="dot" style="background:#C76AA2" title="Rosa"></span>
-                <span class="dot" style="background:#B13B7C" title="Rosa"></span>
-                <span class="dot" style="background:#6E2A5D" title="Rosa"></span>
-
-              </div>
-            </div>
-          </li>
-          <li>
-            <span class="icon">💐</span>
-            <div><strong>Forma:</strong> Ramo Circular</div>
-          </li>
-          <li>
-            <span class="icon">✨</span>
-            <div><strong>Detalles:</strong> Mariposas Plateadas · Ilusiones</div>
-          </li>
-          <li>
-            <span class="icon">📦</span>
-            <div><strong>Estado:</strong> <span class="tag disponible">Disponible</span></div>
-          </li>
-        </ul>
-
-        <div class="price-badge">💰 18.000 CLP</div>
-      </div>
-    </article>
-
-    <!-- ══ RAMO 2 ══════════════════════════════ -->
-    <article class="card">
-      <img class="card-photo" src="fotos/ramo2.jpg" alt="Ramo girasoles y rosas"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-      <div class="card-photo-placeholder" style="display:none">
-        <span>🌻</span><p>Añade tu foto aquí</p>
-      </div>
-
-      <div class="card-body">
-        <h3 class="card-name">Ramo Rojo & Blanco</h3>
-
-        <ul class="detail-list">
-          <li>
-            <span class="icon">🌹</span>
-            <div><strong>Flores:</strong> 35 Flores De Jabón</div>
-          </li>
-          <li>
-            <span class="icon">🎨</span>
-            <div>
-              <strong>Colores:</strong>
-              <div class="color-dots">
-                <span class="dot" style="background:#e03125" title="Rojo"></span>
-                <span class="dot" style="background:#fff6ee" title="Amarillo"></span>
-              </div>
-            </div>
-          </li>
-          <li>
-            <span class="icon">💐</span>
-            <div><strong>Forma:</strong> Ramo Circular</div>
-          </li>
-          <li>
-            <span class="icon">✨</span>
-            <div><strong>Detalles:</strong> Mariposas Plateadas</div>
-          </li>
-          <li>
-            <span class="icon">📦</span>
-            <div><strong>Estado:</strong> <span class="tag agotado">Vendido</span></div>
-          </li>
-        </ul>
-
-        <div class="price-badge">💰 20.000 CLP</div>
-      </div>
-    </article>
-
-    <!-- ══ RAMO 3 ══════════════════════════════ -->
-    <article class="card">
-      <img class="card-photo" src="fotos/ramo3.jpg" alt="Ramo lila y morado"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-      <div class="card-photo-placeholder" style="display:none">
-        <span>💜</span><p>Añade tu foto aquí</p>
-      </div>
-
-      <div class="card-body">
-        <h3 class="card-name">Ramo En Tonos Morados Corazón</h3>
-
-        <ul class="detail-list">
-          <li>
-            <span class="icon">🌹</span>
-            <div><strong>Flores:</strong> 40 Flores De Jabón</div>
-          </li>
-          <li>
-            <span class="icon">🎨</span>
-            <div>
-              <strong>Colores:</strong>
-              <div class="color-dots">
-                <span class="dot" style="background:#f8d7e6" title="Lila claro"></span>
-                <span class="dot" style="background:#e88fb4" title="Morado"></span>
-                <span class="dot" style="background:#c45a7e" title="Rosa suave"></span>
-              </div>
-            </div>
-          </li>
-          <li>
-            <span class="icon">💐</span>
-            <div><strong>Forma:</strong> Corazón grande</div>
-          </li>
-          <li>
-            <span class="icon">✨</span>
-            <div><strong>Extras:</strong> Moño · Ilusiones · Mariposa Plateada</div>
-          </li>
-          <li>
-            <span class="icon">📦</span>
-            <div><strong>Estado:</strong> <span class="tag agotado">Vendido</span></div>
-          </li>
-        </ul>
-
-        <div class="price-badge">💰 25.000 CLP</div>
-      </div>
-    </article>
-
-    <!--
-    ══════════════════════════════════════════════
-    AÑADIR NUEVO RAMO — copia este bloque y rellena
-    ══════════════════════════════════════════════
-    <article class="card">
-      <img class="card-photo" src="RUTA_O_URL_DE_TU_FOTO" alt="Descripción del ramo"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-      <div class="card-photo-placeholder" style="display:none">
-        <span>🌹</span><p>Añade tu foto aquí</p>
-      </div>
-
-      <div class="card-body">
-        <h3 class="card-name">NOMBRE DEL RAMO</h3>
-
-        <ul class="detail-list">
-          <li>
-            <span class="icon">🌹</span>
-            <div><strong>Flores:</strong> Ej: 20 rosas rojas · 5 lirios blancos</div>
-          </li>
-          <li>
-            <span class="icon">🎨</span>
-            <div>
-              <strong>Colores:</strong>
-              <div class="color-dots">
-                <span class="dot" style="background:#CÓDIGO_HEX" title="Nombre color"></span>
-              </div>
-            </div>
-          </li>
-          <li>
-            <span class="icon">💐</span>
-            <div><strong>Forma:</strong> Corazón / Redondo / etc.</div>
-          </li>
-          <li>
-            <span class="icon">✨</span>
-            <div><strong>Extras:</strong> Lazo, papel, pedrería…</div>
-          </li>
-          <li>
-            <span class="icon">📦</span>
-            <div><strong>Estado:</strong>
-              <span class="tag disponible">Disponible</span>
-              o <span class="tag encargo">Por encargo</span>
-              o <span class="tag agotado">Agotado</span>
-            </div>
-          </li>
-        </ul>
-
-        <div class="price-badge">💰 XX €</div>
-      </div>
-    </article>
-    -->
-
-  </div><!-- /grid -->
+  <div class="grid" id="grid"></div>
 </main>
 
-<!-- ═══════════════════════════════════════════
-     PIE DE PÁGINA
-════════════════════════════════════════════ -->
 <footer>
-  <p>🌹 Rosas con Amor &nbsp;·&nbsp; <a href="https://instagram.com/rosas_con_amor.cv" target="_blank">@rosas_con_amor.cv</a> &nbsp;·&nbsp; Ramos hechos con ❤️</p>
+  <p>🌹 Rosas con Amor &nbsp;·&nbsp;
+    <a href="https://instagram.com/rosas_con_amor.cv" target="_blank">@rosas_con_amor.cv</a>
+    &nbsp;·&nbsp; Ramos hechos con ❤️
+  </p>
 </footer>
 
+<!-- MODAL PIN -->
+<div class="overlay" id="modal-pin">
+  <div class="mbox" style="max-width:300px;text-align:center;">
+    <button class="mclose" onclick="closePin()">✕</button>
+    <h2>🔐 Acceso Admin</h2>
+    <div id="pin-disp">····</div>
+    <div class="pgrid">
+      <button class="pbtn" onclick="pp('1')">1</button>
+      <button class="pbtn" onclick="pp('2')">2</button>
+      <button class="pbtn" onclick="pp('3')">3</button>
+      <button class="pbtn" onclick="pp('4')">4</button>
+      <button class="pbtn" onclick="pp('5')">5</button>
+      <button class="pbtn" onclick="pp('6')">6</button>
+      <button class="pbtn" onclick="pp('7')">7</button>
+      <button class="pbtn" onclick="pp('8')">8</button>
+      <button class="pbtn" onclick="pp('9')">9</button>
+      <button class="pbtn z" onclick="pp('0')">0</button>
+      <button class="pbtn d" onclick="pd()">⌫</button>
+    </div>
+    <div id="pin-err"></div>
+  </div>
+</div>
+
+<!-- MODAL AÑADIR RAMO -->
+<div class="overlay" id="modal-add">
+  <div class="mbox">
+    <button class="mclose" onclick="closeAdd()">✕</button>
+    <h2>🌹 Nuevo Ramo</h2>
+
+    <p class="fsec">📸 Foto del ramo</p>
+    <div class="pzone" id="pzone">
+      <input type="file" accept="image/*" id="photo-input" onchange="handlePhoto(event)"/>
+      <div class="pzi">🖼️</div>
+      <p>Haz clic o arrastra tu foto aquí</p>
+    </div>
+    <img id="photo-prev" src="" alt="preview"/>
+    <div id="upload-progress">
+      <div class="bar-bg"><div class="bar-fill" id="bar-fill"></div></div>
+      <p id="bar-text">Subiendo foto… 0%</p>
+    </div>
+
+    <p class="fsec">📝 Información</p>
+    <div class="frow">
+      <label>Nombre del ramo *</label>
+      <input type="text" id="f-nombre" placeholder="Ej: Corazón Rosa & Blanco"/>
+    </div>
+    <div class="frow">
+      <label>Flores (cantidad y tipo)</label>
+      <input type="text" id="f-flores" placeholder="Ej: 24 rosas de jabón · 6 margaritas"/>
+    </div>
+    <div class="frow">
+      <label>Forma</label>
+      <select id="f-forma">
+        <option value="">— Selecciona —</option>
+        <option>Ramo redondo</option>
+        <option>Corazón</option>
+        <option>Corazón grande</option>
+        <option>Ramo alargado</option>
+        <option>Caja sorpresa</option>
+        <option>Otro</option>
+      </select>
+    </div>
+    <div class="frow">
+      <label>Extras / detalles</label>
+      <input type="text" id="f-extras" placeholder="Ej: Mariposas plateadas · Lazo satinado"/>
+    </div>
+    <div class="frow">
+      <label>Precio (CLP)</label>
+      <input type="text" id="f-precio" placeholder="Ej: 18.000"/>
+    </div>
+    <div class="frow">
+      <label>Estado</label>
+      <select id="f-estado">
+        <option value="disponible">✅ Disponible</option>
+        <option value="encargo">🟡 Por encargo</option>
+        <option value="agotado">🔴 Agotado</option>
+        <option value="vendido">💜 Vendido</option>
+      </select>
+    </div>
+    <div class="frow">
+      <label>Colores del ramo</label>
+      <div class="cbuilder">
+        <input type="color" id="cpicker" value="#e8637a"/>
+        <input type="text" id="cname" placeholder="Nombre color (Ej: Rosa fuerte)"/>
+        <button class="pbtn" style="padding:6px 14px;font-size:.84rem;" onclick="addColor()">＋</button>
+      </div>
+      <div id="c-chips"></div>
+    </div>
+
+    <button class="btnp" id="btn-save" onclick="saveRamo()">💾 Guardar Ramo</button>
+    <div id="ferr"></div>
+  </div>
+</div>
+
+
+<!-- ══ FIREBASE + APP SCRIPT ══ -->
+<script type="module">
+import { initializeApp }      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, push, onValue, remove }
+                               from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL }
+                               from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+
+// ── CONFIG ────────────────────────────────────────────────────────────
+const firebaseConfig = {
+  apiKey:            "AIzaSyDdvz0cVXLBFFLxBTXy9j63qGiPNk1zoKE",
+  authDomain:        "rosas-con-amor.firebaseapp.com",
+  databaseURL:       "https://rosas-con-amor-default-rtdb.firebaseio.com",
+  projectId:         "rosas-con-amor",
+  storageBucket:     "rosas-con-amor.firebasestorage.app",
+  messagingSenderId: "870645554454",
+  appId:             "1:870645554454:web:f023a09233afdff1480437",
+  measurementId:     "G-SJFFQ0LNYS"
+};
+
+const app     = initializeApp(firebaseConfig);
+const db      = getDatabase(app);
+const storage = getStorage(app);
+const ramosRef = ref(db, 'ramos');
+
+// ── STATE ─────────────────────────────────────────────────────────────
+const PIN = '4883';
+let admin    = false;
+let pinBuf   = '';
+let photoFile = null;
+let colors   = [];
+let ramosData = {};   // { firebaseKey: ramoObj }
+
+// ── LOADING ───────────────────────────────────────────────────────────
+function showLoading(msg = 'Cargando…') {
+  document.getElementById('loading-text').textContent = msg;
+  document.getElementById('loading').classList.add('on');
+}
+function hideLoading() { document.getElementById('loading').classList.remove('on'); }
+
+// ── REALTIME LISTENER — se actualiza automáticamente ─────────────────
+showLoading('Cargando ramos…');
+onValue(ramosRef, snap => {
+  ramosData = snap.val() || {};
+  hideLoading();
+  render();
+}, err => {
+  hideLoading();
+  console.error(err);
+});
+
+// ── RENDER ────────────────────────────────────────────────────────────
+const LABELS = { disponible:'Disponible', encargo:'Por encargo', agotado:'Agotado', vendido:'Vendido' };
+
+function render() {
+  const g = document.getElementById('grid');
+  const entries = Object.entries(ramosData);
+
+  if (!entries.length) {
+    g.innerHTML = `<div class="empty"><div class="big">🌸</div>
+      <p style="margin-top:12px">${admin ? '¡Añade tu primer ramo!' : 'Próximamente…'}</p></div>`;
+    return;
+  }
+
+  g.innerHTML = entries.map(([key, r]) => {
+    const dots = (r.colors || []).map(c =>
+      `<span class="dot" style="background:${c.hex}" title="${c.name}"></span>`
+    ).join('');
+
+    return `
+    <article class="card ${admin ? 'show-admin-controls' : ''}">
+      <div class="admin-bar-card">
+        <button class="btn-del" onclick="window.__delRamo('${key}')">🗑 Eliminar</button>
+      </div>
+      ${r.photoURL
+        ? `<img class="card-photo" src="${r.photoURL}" alt="${r.nombre}"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>`
+        : ''}
+      <div class="card-placeholder" style="display:${r.photoURL ? 'none' : 'flex'}">
+        <span>🌹</span><p>Sin foto</p>
+      </div>
+      <div class="card-body">
+        <h3 class="card-name">${r.nombre}</h3>
+        <ul class="detail-list">
+          ${r.flores  ? `<li><span class="icon">🌹</span><div><strong>Flores:</strong> ${r.flores}</div></li>` : ''}
+          ${dots      ? `<li><span class="icon">🎨</span><div><strong>Colores:</strong><div class="color-dots">${dots}</div></div></li>` : ''}
+          ${r.forma   ? `<li><span class="icon">💐</span><div><strong>Forma:</strong> ${r.forma}</div></li>` : ''}
+          ${r.extras  ? `<li><span class="icon">✨</span><div><strong>Extras:</strong> ${r.extras}</div></li>` : ''}
+          <li><span class="icon">📦</span><div><strong>Estado:</strong>
+            <span class="tag ${r.estado}">${LABELS[r.estado] || r.estado}</span>
+          </div></li>
+        </ul>
+        ${r.precio ? `<div class="price-badge">💰 ${r.precio} CLP</div>` : ''}
+      </div>
+    </article>`;
+  }).join('');
+}
+
+// Exponer delete al HTML (onclick inline en módulo)
+window.__delRamo = async (key) => {
+  if (!confirm('¿Eliminar este ramo?')) return;
+  showLoading('Eliminando…');
+  await remove(ref(db, `ramos/${key}`));
+  hideLoading();
+};
+
+// ── PIN ───────────────────────────────────────────────────────────────
+window.openPin  = () => {
+  if (admin) return;
+  pinBuf = ''; updPin();
+  document.getElementById('pin-err').textContent = '';
+  document.getElementById('modal-pin').classList.add('on');
+};
+window.closePin = () => { document.getElementById('modal-pin').classList.remove('on'); pinBuf = ''; };
+function updPin() {
+  document.getElementById('pin-disp').textContent =
+    pinBuf.length ? '●'.repeat(pinBuf.length) + '·'.repeat(Math.max(0, 4 - pinBuf.length)) : '····';
+}
+window.pp = d => {
+  if (pinBuf.length >= 6) return;
+  pinBuf += d; updPin();
+  if (pinBuf.length >= PIN.length) setTimeout(checkPin, 160);
+};
+window.pd = () => { pinBuf = pinBuf.slice(0, -1); updPin(); document.getElementById('pin-err').textContent = ''; };
+function checkPin() {
+  if (pinBuf === PIN) { closePin(); enterAdmin(); }
+  else {
+    document.getElementById('pin-err').textContent = '❌ Código incorrecto';
+    pinBuf = ''; updPin();
+  }
+}
+
+// ── ADMIN ─────────────────────────────────────────────────────────────
+function enterAdmin() {
+  admin = true;
+  document.getElementById('admin-top').classList.add('on');
+  document.getElementById('logo-ring').classList.add('admin-glow');
+  render();
+}
+window.exitAdmin = () => {
+  admin = false;
+  document.getElementById('admin-top').classList.remove('on');
+  document.getElementById('logo-ring').classList.remove('admin-glow');
+  render();
+};
+
+// ── ADD MODAL ─────────────────────────────────────────────────────────
+window.openAdd = () => {
+  ['f-nombre','f-flores','f-extras','f-precio','cname'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-forma').value  = '';
+  document.getElementById('f-estado').value = 'disponible';
+  document.getElementById('ferr').textContent = '';
+  document.getElementById('photo-prev').style.display = 'none';
+  document.getElementById('photo-input').value = '';
+  document.getElementById('upload-progress').style.display = 'none';
+  document.getElementById('bar-fill').style.width = '0%';
+  document.getElementById('btn-save').disabled = false;
+  photoFile = null; colors = []; renderChips();
+  document.getElementById('modal-add').classList.add('on');
+};
+window.closeAdd = () => document.getElementById('modal-add').classList.remove('on');
+
+// ── PHOTO ─────────────────────────────────────────────────────────────
+window.handlePhoto = e => {
+  const f = e.target.files[0]; if (!f) return;
+  photoFile = f;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const p = document.getElementById('photo-prev');
+    p.src = ev.target.result; p.style.display = 'block';
+  };
+  reader.readAsDataURL(f);
+};
+
+const pzone = document.getElementById('pzone');
+pzone.addEventListener('dragover',  e => { e.preventDefault(); pzone.classList.add('dg'); });
+pzone.addEventListener('dragleave', ()  => pzone.classList.remove('dg'));
+pzone.addEventListener('drop', e => {
+  e.preventDefault(); pzone.classList.remove('dg');
+  const f = e.dataTransfer.files[0];
+  if (f && f.type.startsWith('image/')) {
+    photoFile = f;
+    const r = new FileReader();
+    r.onload = ev => { const p = document.getElementById('photo-prev'); p.src = ev.target.result; p.style.display = 'block'; };
+    r.readAsDataURL(f);
+  }
+});
+
+// ── COLORS ────────────────────────────────────────────────────────────
+window.addColor = () => {
+  const hex  = document.getElementById('cpicker').value;
+  const name = document.getElementById('cname').value.trim() || 'Color';
+  colors.push({ hex, name });
+  document.getElementById('cname').value = '';
+  renderChips();
+};
+window.removeColor = i => { colors.splice(i, 1); renderChips(); };
+function renderChips() {
+  document.getElementById('c-chips').innerHTML = colors.map((c, i) => `
+    <div class="chip">
+      <span class="cdot" style="background:${c.hex}"></span>${c.name}
+      <button onclick="removeColor(${i})">✕</button>
+    </div>`).join('');
+}
+
+// ── SAVE ──────────────────────────────────────────────────────────────
+window.saveRamo = async () => {
+  const nombre = document.getElementById('f-nombre').value.trim();
+  if (!nombre) { document.getElementById('ferr').textContent = '⚠️ El nombre es obligatorio.'; return; }
+
+  document.getElementById('btn-save').disabled = true;
+  document.getElementById('ferr').textContent = '';
+
+  let photoURL = null;
+
+  // 1. Subir foto a Storage si hay
+  if (photoFile) {
+    try {
+      const ext      = photoFile.name.split('.').pop();
+      const filename = `ramos/${Date.now()}.${ext}`;
+      const storageRef = sRef(storage, filename);
+      const task = uploadBytesResumable(storageRef, photoFile);
+
+      document.getElementById('upload-progress').style.display = 'block';
+
+      await new Promise((resolve, reject) => {
+        task.on('state_changed',
+          snap => {
+            const pct = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+            document.getElementById('bar-fill').style.width = pct + '%';
+            document.getElementById('bar-text').textContent = `Subiendo foto… ${pct}%`;
+          },
+          reject,
+          async () => {
+            photoURL = await getDownloadURL(task.snapshot.ref);
+            resolve();
+          }
+        );
+      });
+    } catch (err) {
+      document.getElementById('ferr').textContent = '❌ Error al subir la foto: ' + err.message;
+      document.getElementById('btn-save').disabled = false;
+      return;
+    }
+  }
+
+  // 2. Guardar en Realtime Database
+  try {
+    showLoading('Guardando ramo…');
+    await push(ramosRef, {
+      nombre,
+      flores:   document.getElementById('f-flores').value.trim(),
+      forma:    document.getElementById('f-forma').value,
+      extras:   document.getElementById('f-extras').value.trim(),
+      precio:   document.getElementById('f-precio').value.trim(),
+      estado:   document.getElementById('f-estado').value,
+      colors:   colors,
+      photoURL: photoURL,
+      createdAt: Date.now(),
+    });
+    hideLoading();
+    closeAdd();
+    // onValue se actualiza solo — no hace falta llamar render()
+  } catch (err) {
+    hideLoading();
+    document.getElementById('ferr').textContent = '❌ Error al guardar: ' + err.message;
+    document.getElementById('btn-save').disabled = false;
+  }
+};
+</script>
 </body>
 </html>
