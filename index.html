@@ -150,6 +150,37 @@
 
     .empty { text-align:center; color:#c0718a; padding:60px 20px; grid-column:1/-1; }
     .empty .big { font-size:3rem; }
+
+  /* ── BOTÓN VER PRECIOS ── */
+.price-guide-wrap { text-align:center; margin-bottom:36px; }
+.btn-price-guide {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; border: 2px solid #f4b8c5;
+  color: #5c2d3e; font-family: 'Lato', sans-serif;
+  font-size: .88rem; font-weight: 700;
+  padding: 9px 20px; border-radius: 30px;
+  cursor: pointer; letter-spacing: .04em;
+  transition: all .2s;
+  box-shadow: 0 2px 10px rgba(92,45,62,.08);
+}
+.btn-price-guide:hover {
+  background: #f9dde3; border-color: #e8637a;
+  color: #e8637a; box-shadow: 0 4px 16px rgba(232,99,122,.18);
+}
+
+/* ── MODAL PRECIOS ── */
+.precios-table { width: 100%; border-collapse: collapse; }
+.precios-table thead tr { background: linear-gradient(90deg, #e8637a, #d4527a); color: #fff; }
+.precios-table thead th { padding: 10px 16px; font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-align: left; }
+.precios-table thead th:last-child { text-align: right; }
+.precios-table tbody tr { border-bottom: 1px solid #fce4ec; transition: background .15s; }
+.precios-table tbody tr:hover { background: #fff0f3; }
+.precios-table tbody tr:last-child { border-bottom: none; }
+.precios-table tbody td { padding: 11px 16px; font-size: .92rem; color: #5c2d3e; }
+.precios-table tbody td:last-child { text-align: right; font-weight: 700; color: #e8637a; font-size: 1rem; }
+.rosas-badge { background: #f9dde3; color: #e8637a; font-size: .75rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; letter-spacing: .03em; }
+
+
   </style>
 </head>
 <body>
@@ -180,6 +211,13 @@
 <main>
   <h2 class="section-title">Nuestros Ramos 🌸</h2>
   <div class="grid" id="grid"></div>
+
+  <div class="price-guide-wrap">
+  <button class="btn-price-guide" onclick="document.getElementById('modal-precios').classList.add('on')">
+    🌹 Ver precios por cantidad de rosas 💰
+  </button>
+</div>
+
 </main>
 
 <footer>
@@ -188,6 +226,37 @@
     &nbsp;·&nbsp; Ramos hechos con ❤️
   </p>
 </footer>
+
+<!-- MODAL PRECIOS -->
+<div class="overlay" id="modal-precios">
+  <div class="mbox">
+    <button class="mclose" onclick="document.getElementById('modal-precios').classList.remove('on')">✕</button>
+    <div style="text-align:center;margin-bottom:22px;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.55rem;color:#5c2d3e;margin-bottom:4px;">❧ Rosas de Jabón ❧</h2>
+      <p style="font-size:.82rem;color:#a0607a;letter-spacing:.05em;">Precios según cantidad de flores</p>
+    </div>
+    <table class="precios-table">
+      <thead>
+        <tr><th>Ramo</th><th style="text-align:right">Precio</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🌹 <span class="rosas-badge">7 rosas</span></td><td>$5.000</td></tr>
+        <tr><td>🌹 <span class="rosas-badge">20 rosas</span></td><td>$14.000</td></tr>
+        <tr><td>🌹 <span class="rosas-badge">25 rosas</span></td><td>$16.000</td></tr>
+        <tr><td>🌹 <span class="rosas-badge">30 rosas</span></td><td>$18.000</td></tr>
+        <tr><td>🌹 <span class="rosas-badge">35 rosas</span></td><td>$20.000</td></tr>
+        <tr><td>🌹 <span class="rosas-badge">40 rosas</span></td><td>$25.000</td></tr>
+        <tr><td>🌹 <span class="rosas-badge">50 rosas</span></td><td>$35.000</td></tr>
+        <tr><td>🌹 <span class="rosas-badge">60 rosas</span></td><td>$40.000</td></tr>
+        <tr><td>🌹 <span class="rosas-badge">70 rosas</span></td><td>$50.000</td></tr>
+        <tr><td>🌹 <span class="rosas-badge">100 rosas</span></td><td>$70.000</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:16px;padding:10px 14px;background:#fff8e1;border-radius:10px;font-size:.8rem;color:#7a5a00;line-height:1.5;text-align:center;">
+      💬 ¿Quieres personalizar tu ramo? Escríbenos por Instagram <strong>@rosas_con_amor.cv</strong> 🌸
+    </div>
+  </div>
+</div>
 
 <!-- MODAL PIN -->
 <div class="overlay" id="modal-pin">
