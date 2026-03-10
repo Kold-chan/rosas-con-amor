@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rosas con Amor 🌹</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:    #e8637a;
+      --blush:   #f9dde3;
+      --cream:   #fdf6f0;
+      --gold:    #c9a96e;
+      --deep:    #5c2d3e;
+      --soft:    #f4b8c5;
+    }
+
+    body {
+      background: var(--cream);
+      font-family: 'Lato', sans-serif;
+      color: var(--deep);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ───────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #fce4ec 0%, #fff0f3 40%, #fce4ec 100%);
+      border-bottom: 2px solid var(--soft);
+      text-align: center;
+      padding: 52px 20px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before, header::after {
+      content: '🌸';
+      font-size: 80px;
+      position: absolute;
+      top: 10px;
+      opacity: 0.18;
+    }
+    header::before { left: 30px; }
+    header::after  { right: 30px; }
+
+    .logo-ring {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      background: var(--blush);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 38px;
+      margin: 0 auto 18px;
+      box-shadow: 0 4px 18px rgba(201,169,110,.25);
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--deep);
+      letter-spacing: .02em;
+    }
+    header h1 span { color: var(--rose); font-style: italic; }
+    header p {
+      margin-top: 8px;
+      font-size: .95rem;
+      color: #a0607a;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* ── GALLERY GRID ─────────────────────────── */
+    main {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 24px 60px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--deep);
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px; height: 2px;
+      background: var(--gold);
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    /* ── CARD ─────────────────────────────────── */
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(92,45,62,.10);
+      transition: transform .3s ease, box-shadow .3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 40px rgba(92,45,62,.18);
+    }
+
+    .card-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      background: var(--blush);
+    }
+
+    /* placeholder when no image */
+    .card-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px;
+      color: #c0718a;
+    }
+    .card-photo-placeholder span { font-size: 52px; }
+    .card-photo-placeholder p   { font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; }
+
+    .card-body {
+      padding: 22px 22px 26px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--deep);
+    }
+
+    /* detail list */
+    .detail-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .detail-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .88rem;
+      color: #6b3a50;
+      line-height: 1.45;
+    }
+    .detail-list li .icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .detail-list li strong {
+      color: var(--deep);
+      font-weight: 600;
+    }
+
+    /* color dots */
+    .color-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+    .dot {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(0,0,0,.12);
+      display: inline-block;
+    }
+
+    /* price badge */
+    .price-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: linear-gradient(90deg, var(--rose), #d4527a);
+      color: #fff;
+      font-size: .95rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 30px;
+      letter-spacing: .03em;
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    /* availability tag */
+    .tag {
+      display: inline-block;
+      font-size: .75rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .tag.disponible  { background: #e8f5e9; color: #388e3c; }
+    .tag.agotado     { background: #fce4ec; color: #c62828; }
+    .tag.encargo     { background: #fff8e1; color: #f57f17; }
+
+    /* ── FOOTER ───────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 28px 16px;
+      background: var(--blush);
+      border-top: 1px solid var(--soft);
+      font-size: .82rem;
+      color: #a0607a;
+      letter-spacing: .06em;
+    }
+    footer a { color: var(--rose); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     CABECERA
+════════════════════════════════════════════ -->
+<header>
+  <div class="logo-ring">🌹</div>
+  <h1>Rosas <span>con Amor</span></h1>
+  <p>Ramos hechos con amor &nbsp;💕&nbsp; @rosas_con_amor.cv</p>
+</header>
+
+<!-- ═══════════════════════════════════════════
+     GALERÍA DE RAMOS
+     ─────────────────────────────────────────
+     CÓMO AÑADIR UN RAMO:
+     1. Copia un bloque <article class="card"> completo
+     2. Cambia la imagen, nombre y detalles
+     3. Para la foto: pon la ruta del archivo o URL en src=""
+        Ejemplo local:  src="fotos/ramo1.jpg"
+        Ejemplo URL:    src="https://..."
+        Sin foto:       borra el <img> y descomenta el bloque placeholder
+════════════════════════════════════════════ -->
+<main>
+  <h2 class="section-title">Nuestros Ramos 🌸</h2>
+
+  <div class="grid">
+
+    <!-- ══ RAMO 1 ══════════════════════════════ -->
+    <article class="card">
+      <!-- FOTO: cambia src por la ruta de tu imagen -->
+      <img class="card-photo" src="fotos/ramo1.jpg" alt="Ramo corazón rosa y blanco"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <!-- Placeholder automático si no hay foto -->
+      <div class="card-photo-placeholder" style="display:none">
+        <span>🌹</span><p>Añade tu foto aquí</p>
+      </div>
+
+      <div class="card-body">
+        <h3 class="card-name">Ramo En Tonos Morados</h3>
+
+        <ul class="detail-list">
+          <li>
+            <span class="icon">🌹</span>
+            <div><strong>Flores:</strong> 30 Flores De Jabón</div>
+          </li>
+          <li>
+            <span class="icon">🎨</span>
+            <div>
+              <strong>Colores:</strong>
+              <div class="color-dots">
+                <span class="dot" style="background:#F5F2F4" title="Blanco"></span>
+                <span class="dot" style="background:#E9C3D3" title="Rosa claro"></span>
+                <span class="dot" style="background:#C76AA2" title="Rosa"></span>
+                <span class="dot" style="background:#B13B7C" title="Rosa"></span>
+                <span class="dot" style="background:#6E2A5D" title="Rosa"></span>
+
+              </div>
+            </div>
+          </li>
+          <li>
+            <span class="icon">💐</span>
+            <div><strong>Forma:</strong> Ramo Circular</div>
+          </li>
+          <li>
+            <span class="icon">✨</span>
+            <div><strong>Detalles:</strong> Mariposas Plateadas · Ilusiones</div>
+          </li>
+          <li>
+            <span class="icon">📦</span>
+            <div><strong>Estado:</strong> <span class="tag disponible">Disponible</span></div>
+          </li>
+        </ul>
+
+        <div class="price-badge">💰 18.000 CLP</div>
+      </div>
+    </article>
+
+    <!-- ══ RAMO 2 ══════════════════════════════ -->
+    <article class="card">
+      <img class="card-photo" src="fotos/ramo2.jpg" alt="Ramo girasoles y rosas"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="card-photo-placeholder" style="display:none">
+        <span>🌻</span><p>Añade tu foto aquí</p>
+      </div>
+
+      <div class="card-body">
+        <h3 class="card-name">Ramo Rojo & Blanco</h3>
+
+        <ul class="detail-list">
+          <li>
+            <span class="icon">🌹</span>
+            <div><strong>Flores:</strong> 35 Flores De Jabón</div>
+          </li>
+          <li>
+            <span class="icon">🎨</span>
+            <div>
+              <strong>Colores:</strong>
+              <div class="color-dots">
+                <span class="dot" style="background:#e03125" title="Rojo"></span>
+                <span class="dot" style="background:#fff6ee" title="Amarillo"></span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <span class="icon">💐</span>
+            <div><strong>Forma:</strong> Ramo Circular</div>
+          </li>
+          <li>
+            <span class="icon">✨</span>
+            <div><strong>Detalles:</strong> Mariposas Plateadas</div>
+          </li>
+          <li>
+            <span class="icon">📦</span>
+            <div><strong>Estado:</strong> <span class="tag agotado">Vendido</span></div>
+          </li>
+        </ul>
+
+        <div class="price-badge">💰 20.000 CLP</div>
+      </div>
+    </article>
+
+    <!-- ══ RAMO 3 ══════════════════════════════ -->
+    <article class="card">
+      <img class="card-photo" src="fotos/ramo3.jpg" alt="Ramo lila y morado"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="card-photo-placeholder" style="display:none">
+        <span>💜</span><p>Añade tu foto aquí</p>
+      </div>
+
+      <div class="card-body">
+        <h3 class="card-name">Ramo En Tonos Morados Corazón</h3>
+
+        <ul class="detail-list">
+          <li>
+            <span class="icon">🌷</span>
+            <div><strong>Flores:</strong> 40 Flores De Jabón</div>
+          </li>
+          <li>
+            <span class="icon">🎨</span>
+            <div>
+              <strong>Colores:</strong>
+              <div class="color-dots">
+                <span class="dot" style="background:#f8d7e6" title="Lila claro"></span>
+                <span class="dot" style="background:#e88fb4" title="Morado"></span>
+                <span class="dot" style="background:#c45a7e" title="Rosa suave"></span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <span class="icon">💐</span>
+            <div><strong>Forma:</strong> Corazón grande</div>
+          </li>
+          <li>
+            <span class="icon">✨</span>
+            <div><strong>Extras:</strong> Moño · Ilusiones · Mariposa Plateada</div>
+          </li>
+          <li>
+            <span class="icon">📦</span>
+            <div><strong>Estado:</strong> <span class="tag agotado">Vendido</span></div>
+          </li>
+        </ul>
+
+        <div class="price-badge">💰 25.000 CLP</div>
+      </div>
+    </article>
+
+    <!--
+    ══════════════════════════════════════════════
+    AÑADIR NUEVO RAMO — copia este bloque y rellena
+    ══════════════════════════════════════════════
+    <article class="card">
+      <img class="card-photo" src="RUTA_O_URL_DE_TU_FOTO" alt="Descripción del ramo"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="card-photo-placeholder" style="display:none">
+        <span>🌹</span><p>Añade tu foto aquí</p>
+      </div>
+
+      <div class="card-body">
+        <h3 class="card-name">NOMBRE DEL RAMO</h3>
+
+        <ul class="detail-list">
+          <li>
+            <span class="icon">🌹</span>
+            <div><strong>Flores:</strong> Ej: 20 rosas rojas · 5 lirios blancos</div>
+          </li>
+          <li>
+            <span class="icon">🎨</span>
+            <div>
+              <strong>Colores:</strong>
+              <div class="color-dots">
+                <span class="dot" style="background:#CÓDIGO_HEX" title="Nombre color"></span>
+              </div>
+            </div>
+          </li>
+          <li>
+            <span class="icon">💐</span>
+            <div><strong>Forma:</strong> Corazón / Redondo / etc.</div>
+          </li>
+          <li>
+            <span class="icon">✨</span>
+            <div><strong>Extras:</strong> Lazo, papel, pedrería…</div>
+          </li>
+          <li>
+            <span class="icon">📦</span>
+            <div><strong>Estado:</strong>
+              <span class="tag disponible">Disponible</span>
+              o <span class="tag encargo">Por encargo</span>
+              o <span class="tag agotado">Agotado</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="price-badge">💰 XX €</div>
+      </div>
+    </article>
+    -->
+
+  </div><!-- /grid -->
+</main>
+
+<!-- ═══════════════════════════════════════════
+     PIE DE PÁGINA
+════════════════════════════════════════════ -->
+<footer>
+  <p>🌹 Rosas con Amor &nbsp;·&nbsp; <a href="https://instagram.com/rosas_con_amor.cv" target="_blank">@rosas_con_amor.cv</a> &nbsp;·&nbsp; Ramos hechos con ❤️</p>
+</footer>
+
+</body>
+</html>
