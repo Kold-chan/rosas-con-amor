@@ -284,7 +284,7 @@
 
   <div class="price-guide-wrap">
   <button class="btn-price-guide" onclick="document.getElementById('modal-precios').classList.add('on')">
-    🌹 Precios 💰
+    🌹 Toca aquí para ver los Precios 💰
   </button>
 
 </header>
@@ -727,6 +727,22 @@ window.saveRamo = async () => {
     if (!fab.contains(e.target)) {
       fab.classList.remove('open');
       document.getElementById('fab-main').classList.remove('open');
+    }
+  });
+</script>
+
+<script>
+  // Bloquear click derecho
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Bloquear F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+  document.addEventListener('keydown', e => {
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && ['I','i','J','j','C','c'].includes(e.key)) ||
+      (e.ctrlKey && ['U','u'].includes(e.key))
+    ) {
+      e.preventDefault();
     }
   });
 </script>
