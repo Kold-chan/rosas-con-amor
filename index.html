@@ -255,6 +255,19 @@
 .fab-child:nth-child(2) { transition-delay: .05s; }
 .fab-child:nth-child(3) { transition-delay: .1s;  }
 
+.sort-btn {
+  background: #fff; border: 1.5px solid #f4b8c5;
+  color: #5c2d3e; font-size: .75rem; font-weight: 700;
+  padding: 5px 10px; border-radius: 20px;
+  cursor: pointer; transition: all .2s;
+}
+.sort-btn:hover { background: #f9dde3; border-color: #e8637a; }
+.sort-btn.active {
+  background: linear-gradient(90deg,#e8637a,#d4527a);
+  color:#fff; border-color:transparent;
+  box-shadow: 0 2px 8px rgba(232,99,122,.3);
+}
+
   </style>
 </head>
 <body>
@@ -289,10 +302,17 @@
 </header>
 
 <main>
-  <h2 class="section-title">Nuestros Ramos 🌸</h2>
+  <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:16px;flex-wrap:wrap;">
+  <h2 class="section-title" style="margin-bottom:0;">Nuestros Ramos 🌸</h2>
+  <div style="display:flex;gap:6px;">
+    <button class="sort-btn active" onclick="sortRamos('default',this)">🌹</button>
+    <button class="sort-btn" onclick="sortRamos('asc',this)">💰↓</button>
+    <button class="sort-btn" onclick="sortRamos('desc',this)">💰↑</button>
+  </div>
+</div>
   <div class="grid" id="grid"></div>
-
-
+  
+  
 </div>
 
 </main>
@@ -521,6 +541,71 @@ function render() {
       </div>
     </article>`;
   }).join('');
+
+// ── ORDENAR POR PRECIO ────────────────────────────────────────────────
+let sortOrder = 'default';
+
+window.sortRamos = (order, btn) => {
+  sortOrder = order;
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSorted();
+};
+
+function parsePrice(precio) {
+  if (!precio) return 0;
+  return parseInt(precio.replace(/\D/g, '')) || 0;
+}
+
+function renderSorted() {
+  let entries = Object.entries(ramosData);
+
+  if (sortOrder === 'asc') {
+    entries.sort((a, b) => parsePrice(a[1].precio) - parsePrice(b[1].precio));
+  } else if (sortOrder === 'desc') {
+    entries.sort((a, b) => parsePrice(b[1].precio) - parsePrice(a[1].precio));
+  }
+
+  const g = document.getElementById('grid');
+  const LABELS = { disponible:'Disponible', encargo:'Por encargo', agotado:'Agotado', vendido:'Vendido' };
+
+  if (!entries.length) {
+    g.innerHTML = `<div class="empty"><div class="big">🌸</div>
+      <p style="margin-top:12px">${admin ? '¡Añade tu primer ramo!' : 'Próximamente…'}</p></div>`;
+    return;
+  }
+
+  g.innerHTML = entries.map(([key, r]) => {
+    const dots = (r.colors || []).map(c =>
+      `<span class="dot" style="background:${c.hex}" title="${c.name}"></span>`
+    ).join('');
+    const hasPhoto = r.photo && r.photo.length > 0;
+    return `
+    <article class="card ${admin ? 'show-admin-controls' : ''}">
+      <div class="admin-bar-card">
+        <button class="btn-del" onclick="window.__del('${key}')">🗑 Eliminar</button>
+      </div>
+      ${hasPhoto ? `<img class="card-photo" src="${r.photo}" alt="${r.nombre}"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>` : ''}
+      <div class="card-placeholder" style="display:${hasPhoto ? 'none' : 'flex'}">
+        <span>🌹</span><p>Sin foto</p>
+      </div>
+      <div class="card-body">
+        <h3 class="card-name">${r.nombre}</h3>
+        <ul class="detail-list">
+          ${r.flores  ? `<li><span class="icon">🌹</span><div><strong>Flores:</strong> ${r.flores}</div></li>` : ''}
+          ${dots      ? `<li><span class="icon">🎨</span><div><strong>Colores:</strong><div class="color-dots">${dots}</div></div></li>` : ''}
+          ${r.forma   ? `<li><span class="icon">💐</span><div><strong>Forma:</strong> ${r.forma}</div></li>` : ''}
+          ${r.extras  ? `<li><span class="icon">✨</span><div><strong>Extras:</strong> ${r.extras}</div></li>` : ''}
+          <li><span class="icon">📦</span><div><strong>Estado:</strong>
+            <span class="tag ${r.estado}">${LABELS[r.estado] || r.estado}</span>
+          </div></li>
+        </ul>
+        ${r.precio ? `<div class="price-badge">💰 ${r.precio} CLP</div>` : ''}
+      </div>
+    </article>`;
+  }).join('');
+}
 }
 
 // ── DELETE ────────────────────────────────────────────────────────────
