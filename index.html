@@ -35,7 +35,6 @@
       overflow-x: hidden;
     }
 
-    /* ── PETAL BACKGROUND ── */
     body::before {
       content: '';
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
@@ -45,7 +44,6 @@
         radial-gradient(ellipse 400px 300px at 50% 50%, rgba(245,160,181,.03) 0%, transparent 70%);
     }
 
-    /* Floating petals */
     .petals { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
     .petal {
       position: absolute; top: -30px;
@@ -85,30 +83,18 @@
       text-align: center;
       padding: 0 20px;
       overflow: hidden;
-      background: linear-gradient(180deg,
-        #fff5f8 0%,
-        #fceef3 40%,
-        #fff9fb 70%,
-        var(--cream) 100%
-      );
+      background: linear-gradient(180deg, #fff5f8 0%, #fceef3 40%, #fff9fb 70%, var(--cream) 100%);
     }
-
-    /* Top decorative border */
     header::before {
       content: '';
       display: block;
       height: 5px;
-      background: linear-gradient(90deg,
-        transparent 0%, var(--rose3) 20%, var(--gold2) 50%, var(--rose3) 80%, transparent 100%
-      );
+      background: linear-gradient(90deg, transparent 0%, var(--rose3) 20%, var(--gold2) 50%, var(--rose3) 80%, transparent 100%);
     }
-
     .header-inner {
       padding: 50px 20px 44px;
       position: relative;
     }
-
-    /* Decorative corner roses */
     .header-inner::before,
     .header-inner::after {
       content: '🌸';
@@ -128,7 +114,6 @@
       cursor: default; z-index: 10; opacity: 0;
     }
 
-    /* Logo */
     .logo-wrap { position: relative; display: inline-block; margin-bottom: 24px; }
     .logo-ring {
       width: 150px; height: 150px; border-radius: 50%;
@@ -146,8 +131,6 @@
     .logo-ring.admin-glow {
       box-shadow: 0 0 0 4px rgba(200,92,120,.3), 0 12px 40px rgba(200,92,120,.3);
     }
-
-    /* Rotating dashed ring */
     .logo-ring-outer {
       position: absolute; inset: -14px; border-radius: 50%;
       border: 1px dashed rgba(184,146,74,.35);
@@ -161,7 +144,6 @@
     .logo-ring-outer::after  { bottom: -6px; left: 50%; transform: translateX(-50%); }
     @keyframes rotateSlow { to { transform: rotate(360deg); } }
 
-    /* Title */
     header h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.8rem, 7vw, 5rem);
@@ -181,7 +163,6 @@
       background-clip: text;
     }
 
-    /* Subtitle line with ornaments */
     .header-sub {
       display: flex; align-items: center; justify-content: center; gap: 12px;
       margin: 14px 0 0;
@@ -193,7 +174,6 @@
       color: var(--gold2); font-size: .65rem; letter-spacing: .1em;
     }
 
-    /* Bottom wave decoration */
     .header-wave {
       display: block;
       width: 100%; height: 32px;
@@ -206,7 +186,6 @@
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 32'%3E%3Cpath d='M0,16 C150,32 350,0 600,16 C850,32 1050,0 1200,16 L1200,32 L0,32 Z' fill='%23fdf9f7'/%3E%3C/svg%3E") no-repeat center / cover;
     }
 
-    /* Prices button in header */
     .header-prices-btn {
       display: inline-flex; align-items: center; gap: 8px;
       margin-top: 22px;
@@ -229,7 +208,6 @@
     /* ── MAIN ── */
     main { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:52px 24px 80px; }
 
-    /* Section title */
     .title-row {
       display: flex; align-items: center; justify-content: center;
       gap: 16px; margin-bottom: 40px; flex-wrap: wrap;
@@ -251,7 +229,6 @@
       margin-left: 12px; vertical-align: middle;
     }
 
-    /* Sort buttons */
     .sort-group { display:flex; gap:6px; }
     .sort-btn {
       background: var(--blush2); border: 1px solid var(--soft);
@@ -267,7 +244,6 @@
       box-shadow: 0 3px 12px rgba(200,92,120,.3);
     }
 
-    /* Grid */
     .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:28px; }
 
     /* ── CARDS ── */
@@ -311,7 +287,6 @@
       line-height: 1.2;
     }
 
-    /* Divider */
     .card-divider {
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--soft), transparent);
@@ -325,14 +300,12 @@
     .color-dots { display:flex; flex-wrap:wrap; gap:5px; margin-top:3px; }
     .dot { width:16px; height:16px; border-radius:50%; border:1.5px solid rgba(0,0,0,.1); display:inline-block; box-shadow:0 1px 3px rgba(0,0,0,.1); }
 
-    /* Tags */
     .tag { display:inline-block; font-size:.68rem; padding:3px 10px; border-radius:20px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; }
     .tag.disponible { background:#edf7ee; color:#237a30; border:1px solid rgba(35,122,48,.15); }
     .tag.agotado    { background:#fdecea; color:#a8151b; border:1px solid rgba(168,21,27,.15); }
     .tag.encargo    { background:#fff8e6; color:#b07000; border:1px solid rgba(176,112,0,.15); }
     .tag.vendido    { background:#f0eeff; color:#5215a0; border:1px solid rgba(82,21,160,.15); }
 
-    /* Price badge */
     .price-badge {
       display: inline-flex; align-items: center; gap: 6px;
       background: linear-gradient(135deg, var(--rose), #a8405a);
@@ -343,11 +316,44 @@
       font-family: 'Jost', sans-serif;
     }
 
-    /* Admin controls */
-    .admin-bar-card { display:none; justify-content:flex-end; padding:8px 12px 0; }
-    .show-admin-controls .admin-bar-card { display:flex; }
-    .btn-del { background:rgba(168,21,27,.08); color:#a8151b; border:1px solid rgba(168,21,27,.2); border-radius:20px; font-size:.72rem; font-weight:600; padding:4px 12px; cursor:pointer; transition:all .2s; }
-    .btn-del:hover { background:#a8151b; color:#fff; }
+    /* Admin controls on cards */
+    .admin-bar-card {
+      display: none;
+      justify-content: flex-end;
+      gap: 6px;
+      padding: 10px 12px 0;
+    }
+    .show-admin-controls .admin-bar-card { display: flex; }
+
+    .btn-edit {
+      background: rgba(184,146,74,.1);
+      color: var(--gold);
+      border: 1px solid rgba(184,146,74,.3);
+      border-radius: 20px;
+      font-size: .72rem; font-weight: 600;
+      padding: 5px 13px;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: 'Jost', sans-serif;
+    }
+    .btn-edit:hover {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+    }
+
+    .btn-del {
+      background: rgba(168,21,27,.08);
+      color: #a8151b;
+      border: 1px solid rgba(168,21,27,.2);
+      border-radius: 20px;
+      font-size: .72rem; font-weight: 600;
+      padding: 5px 13px;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: 'Jost', sans-serif;
+    }
+    .btn-del:hover { background: #a8151b; color: #fff; }
 
     /* ── FOOTER ── */
     footer {
@@ -424,8 +430,24 @@
     .pbtn.d { background:#fdecea; color:#a8151b; border-color:rgba(168,21,27,.15); }
     #pin-err { text-align:center; color:#a8151b; font-size:.82rem; margin-top:12px; min-height:20px; }
 
-    /* ADD MODAL */
+    /* ADD / EDIT MODAL */
     #modal-add .mbox { max-width:560px; max-height:92vh; overflow-y:auto; }
+
+    /* Modal title badge for edit mode */
+    .modal-mode-badge {
+      display: inline-block;
+      font-size: .68rem;
+      font-family: 'Jost', sans-serif;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .modal-mode-badge.new  { background: var(--blush); color: var(--rose); border: 1px solid var(--soft); }
+    .modal-mode-badge.edit { background: rgba(184,146,74,.12); color: var(--gold); border: 1px solid rgba(184,146,74,.3); }
+
     .fsec {
       font-family:'Cormorant Garamond',serif;
       font-size:1.1rem; color:var(--deep);
@@ -466,6 +488,25 @@
     #photo-prev { width:100%; max-height:200px; object-fit:cover; border-radius:12px; margin-top:10px; display:none; }
     #compress-info { font-size:.75rem; color:var(--deep2); text-align:center; margin-top:5px; display:none; }
 
+    /* Remove photo button */
+    #btn-remove-photo {
+      display: none;
+      width: 100%;
+      padding: 8px;
+      margin-top: 6px;
+      background: rgba(168,21,27,.06);
+      color: #a8151b;
+      border: 1px dashed rgba(168,21,27,.2);
+      border-radius: 10px;
+      font-size: .75rem;
+      font-weight: 600;
+      font-family: 'Jost', sans-serif;
+      cursor: pointer;
+      transition: all .2s;
+      letter-spacing: .06em;
+    }
+    #btn-remove-photo:hover { background: rgba(168,21,27,.12); }
+
     .btnp {
       width:100%; padding:14px; margin-top:8px;
       background: linear-gradient(135deg, var(--rose), #a8405a);
@@ -477,24 +518,20 @@
     }
     .btnp:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(200,92,120,.45); }
     .btnp:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+    /* Edit mode save button */
+    .btnp.edit-mode {
+      background: linear-gradient(135deg, var(--gold), #9a7535);
+      box-shadow: 0 6px 20px rgba(184,146,74,.35);
+    }
+    .btnp.edit-mode:hover { box-shadow: 0 8px 28px rgba(184,146,74,.45); }
+
     #ferr { color:#a8151b; font-size:.8rem; text-align:center; margin-top:8px; min-height:18px; }
+
     .empty { text-align:center; color:var(--rose3); padding:60px 20px; grid-column:1/-1; }
     .empty .big { font-size:3.5rem; }
 
     /* PRECIOS TABLE */
-    .price-guide-wrap { text-align:center; }
-    .btn-price-guide {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: linear-gradient(135deg, var(--rose), #a8405a);
-      border: none; color: #fff;
-      font-family: 'Jost', sans-serif;
-      font-size: .78rem; font-weight: 500;
-      padding: 10px 26px; border-radius: 30px;
-      cursor: pointer; letter-spacing: .1em; text-transform: uppercase;
-      box-shadow: 0 6px 24px rgba(200,92,120,.35);
-      transition: all .25s;
-    }
-    .btn-price-guide:hover { transform:translateY(-2px); box-shadow:0 10px 32px rgba(200,92,120,.45); }
     .precios-table { width:100%; border-collapse:collapse; }
     .precios-table thead tr { background:linear-gradient(135deg, var(--rose), #a8405a); color:#fff; }
     .precios-table thead th { padding:11px 16px; font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; text-align:left; font-family:'Jost',sans-serif; }
@@ -553,20 +590,20 @@
 <div id="admin-top">
   <span>🔐 Modo Admin — Rosas con Amor</span>
   <div>
-    <button class="atbtn gold" onclick="openAdd()">＋ Añadir Ramo</button>
-    <button class="atbtn" onclick="exitAdmin()">Salir</button>
+    <button class="atbtn gold" onclick="window.__openAdd()">＋ Añadir Ramo</button>
+    <button class="atbtn" onclick="window.__exitAdmin()">Salir</button>
   </div>
 </div>
 
 <!-- HEADER -->
 <header>
   <div class="header-inner">
-    <button id="secret-btn" onclick="openPin()" tabindex="-1" aria-hidden="true"></button>
+    <button id="secret-btn" onclick="window.__openPin()" tabindex="-1" aria-hidden="true"></button>
 
     <div class="logo-wrap">
       <div class="logo-ring" id="logo-ring">
-  <img src="rosaslogo.jfif" alt="Rosas Eternas CM" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
-</div>
+        <img src="rosaslogo.jfif" alt="Rosas Eternas CM" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
       <div class="logo-ring-outer"></div>
     </div>
 
@@ -587,9 +624,9 @@
   <div class="title-row">
     <h2 class="section-title">Nuestros Ramos</h2>
     <div class="sort-group">
-      <button class="sort-btn active" onclick="sortRamos('default',this)">🌹</button>
-      <button class="sort-btn" onclick="sortRamos('asc',this)">💰↑</button>
-      <button class="sort-btn" onclick="sortRamos('desc',this)">💰↓</button>
+      <button class="sort-btn active" onclick="window.__sortRamos('default',this)">🌹</button>
+      <button class="sort-btn" onclick="window.__sortRamos('desc',this)">💰↑</button>
+      <button class="sort-btn" onclick="window.__sortRamos('asc',this)">💰↓</button>
     </div>
   </div>
   <div class="grid" id="grid"></div>
@@ -638,39 +675,46 @@
 <!-- MODAL PIN -->
 <div class="overlay" id="modal-pin">
   <div class="mbox" style="max-width:300px;text-align:center;">
-    <button class="mclose" onclick="closePin()">✕</button>
+    <button class="mclose" onclick="window.__closePin()">✕</button>
     <h2>🔐 Acceso Carla</h2>
     <div id="pin-disp">····</div>
     <div class="pgrid">
-      <button class="pbtn" onclick="pp('1')">1</button>
-      <button class="pbtn" onclick="pp('2')">2</button>
-      <button class="pbtn" onclick="pp('3')">3</button>
-      <button class="pbtn" onclick="pp('4')">4</button>
-      <button class="pbtn" onclick="pp('5')">5</button>
-      <button class="pbtn" onclick="pp('6')">6</button>
-      <button class="pbtn" onclick="pp('7')">7</button>
-      <button class="pbtn" onclick="pp('8')">8</button>
-      <button class="pbtn" onclick="pp('9')">9</button>
-      <button class="pbtn z" onclick="pp('0')">0</button>
-      <button class="pbtn d" onclick="pd()">⌫</button>
+      <button class="pbtn" onclick="window.__pp('1')">1</button>
+      <button class="pbtn" onclick="window.__pp('2')">2</button>
+      <button class="pbtn" onclick="window.__pp('3')">3</button>
+      <button class="pbtn" onclick="window.__pp('4')">4</button>
+      <button class="pbtn" onclick="window.__pp('5')">5</button>
+      <button class="pbtn" onclick="window.__pp('6')">6</button>
+      <button class="pbtn" onclick="window.__pp('7')">7</button>
+      <button class="pbtn" onclick="window.__pp('8')">8</button>
+      <button class="pbtn" onclick="window.__pp('9')">9</button>
+      <button class="pbtn z" onclick="window.__pp('0')">0</button>
+      <button class="pbtn d" onclick="window.__pd()">⌫</button>
     </div>
     <div id="pin-err"></div>
   </div>
 </div>
 
-<!-- MODAL AÑADIR RAMO -->
+<!-- MODAL AÑADIR / EDITAR RAMO -->
 <div class="overlay" id="modal-add">
   <div class="mbox">
-    <button class="mclose" onclick="closeAdd()">✕</button>
-    <h2>🌹 Nuevo Ramo</h2>
+    <button class="mclose" onclick="window.__closeAdd()">✕</button>
+
+    <!-- Badge que indica el modo -->
+    <div style="text-align:center;">
+      <span class="modal-mode-badge new" id="modal-mode-badge">✨ Nuevo ramo</span>
+    </div>
+
+    <h2 id="modal-add-title">🌹 Nuevo Ramo</h2>
 
     <p class="fsec">📸 Foto del ramo</p>
     <div class="pzone" id="pzone">
-      <input type="file" accept="image/*" id="photo-input" onchange="handlePhoto(event)"/>
+      <input type="file" accept="image/*" id="photo-input" onchange="window.__handlePhoto(event)"/>
       <div class="pzi">🖼️</div>
       <p>Haz clic o arrastra tu foto aquí</p>
     </div>
     <img id="photo-prev" src="" alt="preview"/>
+    <button id="btn-remove-photo" onclick="window.__removePhoto()">🗑 Quitar foto</button>
     <div id="compress-info">📦 Foto comprimida para ahorrar espacio</div>
 
     <p class="fsec">📝 Información</p>
@@ -716,12 +760,12 @@
       <div class="cbuilder">
         <input type="color" id="cpicker" value="#e8637a"/>
         <input type="text" id="cname" placeholder="Nombre color (Ej: Rosa fuerte)"/>
-        <button class="pbtn" style="padding:6px 14px;font-size:.84rem;" onclick="addColor()">＋</button>
+        <button class="pbtn" style="padding:6px 14px;font-size:.84rem;" onclick="window.__addColor()">＋</button>
       </div>
       <div id="c-chips"></div>
     </div>
 
-    <button class="btnp" id="btn-save" onclick="saveRamo()">💾 Guardar Ramo</button>
+    <button class="btnp" id="btn-save" onclick="window.__saveRamo()">💾 Guardar Ramo</button>
     <div id="ferr"></div>
   </div>
 </div>
@@ -729,7 +773,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, push, onValue, remove }
+import { getDatabase, ref, push, onValue, remove, update }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 // ── CONFIG ────────────────────────────────────────────────────────────
@@ -748,26 +792,35 @@ const db       = getDatabase(app);
 const ramosRef = ref(db, 'ramos');
 
 // ── STATE ─────────────────────────────────────────────────────────────
-const PIN    = '4883';
-let admin    = false;
-let pinBuf   = '';
-let photo64  = null;   // base64 comprimida
-let colors   = [];
-let ramosData = {};
+const PIN      = '4883';
+let admin      = false;
+let pinBuf     = '';
+let photo64    = null;
+let colors     = [];
+let ramosData  = {};
+let editingKey = null;   // null = nuevo ramo, string = editando
+let sortOrder  = 'default';
 
-// ── LOADING ───────────────────────────────────────────────────────────
+// ── HELPERS ───────────────────────────────────────────────────────────
 const showLoading = (msg = 'Cargando…') => {
   document.getElementById('loading-text').textContent = msg;
   document.getElementById('loading').classList.add('on');
 };
 const hideLoading = () => document.getElementById('loading').classList.remove('on');
 
+const LABELS = { disponible:'Disponible', encargo:'Por encargo', agotado:'Agotado', vendido:'Vendido' };
+
+function parsePrice(precio) {
+  if (!precio) return 0;
+  return parseInt(precio.replace(/\D/g, '')) || 0;
+}
+
 // ── FIREBASE LISTENER ─────────────────────────────────────────────────
 showLoading('Cargando ramos…');
 onValue(ramosRef, snap => {
   ramosData = snap.val() || {};
   hideLoading();
-  render();
+  renderSorted();
 }, err => {
   hideLoading();
   document.getElementById('grid').innerHTML =
@@ -775,65 +828,39 @@ onValue(ramosRef, snap => {
 });
 
 // ── RENDER ────────────────────────────────────────────────────────────
-const LABELS = { disponible:'Disponible', encargo:'Por encargo', agotado:'Agotado', vendido:'Vendido' };
+function buildCardHTML(key, r) {
+  const dots = (r.colors || []).map(c =>
+    `<span class="dot" style="background:${c.hex}" title="${c.name}"></span>`
+  ).join('');
+  const hasPhoto = r.photo && r.photo.length > 0;
 
-function render() {
-  const g       = document.getElementById('grid');
-  const entries = Object.entries(ramosData);
-
-  if (!entries.length) {
-    g.innerHTML = `<div class="empty"><div class="big">🌸</div>
-      <p style="margin-top:12px">${admin ? '¡Añade tu primer ramo!' : 'Próximamente…'}</p></div>`;
-    return;
-  }
-
-  g.innerHTML = entries.map(([key, r]) => {
-    const dots = (r.colors || []).map(c =>
-      `<span class="dot" style="background:${c.hex}" title="${c.name}"></span>`
-    ).join('');
-    const hasPhoto = r.photo && r.photo.length > 0;
-
-    return `
-    <article class="card ${admin ? 'show-admin-controls' : ''}">
-      <div class="admin-bar-card">
-        <button class="btn-del" onclick="window.__del('${key}')">🗑 Eliminar</button>
-      </div>
-      ${hasPhoto
-        ? `<img class="card-photo" src="${r.photo}" alt="${r.nombre}"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>`
-        : ''}
-      <div class="card-placeholder" style="display:${hasPhoto ? 'none' : 'flex'}">
-        <span>🌹</span><p>Sin foto</p>
-      </div>
-      <div class="card-body">
-        <h3 class="card-name">${r.nombre}</h3>
-        <ul class="detail-list">
-          ${r.flores  ? `<li><span class="icon">🌹</span><div><strong>Flores:</strong> ${r.flores}</div></li>` : ''}
-          ${dots      ? `<li><span class="icon">🎨</span><div><strong>Colores:</strong><div class="color-dots">${dots}</div></div></li>` : ''}
-          ${r.forma   ? `<li><span class="icon">💐</span><div><strong>Forma:</strong> ${r.forma}</div></li>` : ''}
-          ${r.extras  ? `<li><span class="icon">✨</span><div><strong>Extras:</strong> ${r.extras}</div></li>` : ''}
-          <li><span class="icon">📦</span><div><strong>Estado:</strong>
-            <span class="tag ${r.estado}">${LABELS[r.estado] || r.estado}</span>
-          </div></li>
-        </ul>
-        ${r.precio ? `<div class="price-badge">💰 ${r.precio} CLP</div>` : ''}
-      </div>
-    </article>`;
-  }).join('');
-
-// ── ORDENAR POR PRECIO ────────────────────────────────────────────────
-let sortOrder = 'default';
-
-window.sortRamos = (order, btn) => {
-  sortOrder = order;
-  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderSorted();
-};
-
-function parsePrice(precio) {
-  if (!precio) return 0;
-  return parseInt(precio.replace(/\D/g, '')) || 0;
+  return `
+  <article class="card ${admin ? 'show-admin-controls' : ''}">
+    <div class="admin-bar-card">
+      <button class="btn-edit" onclick="window.__editRamo('${key}')">✏️ Editar</button>
+      <button class="btn-del"  onclick="window.__del('${key}')">🗑 Eliminar</button>
+    </div>
+    ${hasPhoto
+      ? `<img class="card-photo" src="${r.photo}" alt="${r.nombre}"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>`
+      : ''}
+    <div class="card-placeholder" style="display:${hasPhoto ? 'none' : 'flex'}">
+      <span>🌹</span><p>Sin foto</p>
+    </div>
+    <div class="card-body">
+      <h3 class="card-name">${r.nombre}</h3>
+      <ul class="detail-list">
+        ${r.flores  ? `<li><span class="icon">🌹</span><div><strong>Flores:</strong> ${r.flores}</div></li>` : ''}
+        ${dots      ? `<li><span class="icon">🎨</span><div><strong>Colores:</strong><div class="color-dots">${dots}</div></div></li>` : ''}
+        ${r.forma   ? `<li><span class="icon">💐</span><div><strong>Forma:</strong> ${r.forma}</div></li>` : ''}
+        ${r.extras  ? `<li><span class="icon">✨</span><div><strong>Extras:</strong> ${r.extras}</div></li>` : ''}
+        <li><span class="icon">📦</span><div><strong>Estado:</strong>
+          <span class="tag ${r.estado}">${LABELS[r.estado] || r.estado}</span>
+        </div></li>
+      </ul>
+      ${r.precio ? `<div class="price-badge">💰 ${r.precio} CLP</div>` : ''}
+    </div>
+  </article>`;
 }
 
 function renderSorted() {
@@ -846,7 +873,6 @@ function renderSorted() {
   }
 
   const g = document.getElementById('grid');
-  const LABELS = { disponible:'Disponible', encargo:'Por encargo', agotado:'Agotado', vendido:'Vendido' };
 
   if (!entries.length) {
     g.innerHTML = `<div class="empty"><div class="big">🌸</div>
@@ -854,38 +880,16 @@ function renderSorted() {
     return;
   }
 
-  g.innerHTML = entries.map(([key, r]) => {
-    const dots = (r.colors || []).map(c =>
-      `<span class="dot" style="background:${c.hex}" title="${c.name}"></span>`
-    ).join('');
-    const hasPhoto = r.photo && r.photo.length > 0;
-    return `
-    <article class="card ${admin ? 'show-admin-controls' : ''}">
-      <div class="admin-bar-card">
-        <button class="btn-del" onclick="window.__del('${key}')">🗑 Eliminar</button>
-      </div>
-      ${hasPhoto ? `<img class="card-photo" src="${r.photo}" alt="${r.nombre}"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>` : ''}
-      <div class="card-placeholder" style="display:${hasPhoto ? 'none' : 'flex'}">
-        <span>🌹</span><p>Sin foto</p>
-      </div>
-      <div class="card-body">
-        <h3 class="card-name">${r.nombre}</h3>
-        <ul class="detail-list">
-          ${r.flores  ? `<li><span class="icon">🌹</span><div><strong>Flores:</strong> ${r.flores}</div></li>` : ''}
-          ${dots      ? `<li><span class="icon">🎨</span><div><strong>Colores:</strong><div class="color-dots">${dots}</div></div></li>` : ''}
-          ${r.forma   ? `<li><span class="icon">💐</span><div><strong>Forma:</strong> ${r.forma}</div></li>` : ''}
-          ${r.extras  ? `<li><span class="icon">✨</span><div><strong>Extras:</strong> ${r.extras}</div></li>` : ''}
-          <li><span class="icon">📦</span><div><strong>Estado:</strong>
-            <span class="tag ${r.estado}">${LABELS[r.estado] || r.estado}</span>
-          </div></li>
-        </ul>
-        ${r.precio ? `<div class="price-badge">💰 ${r.precio} CLP</div>` : ''}
-      </div>
-    </article>`;
-  }).join('');
+  g.innerHTML = entries.map(([key, r]) => buildCardHTML(key, r)).join('');
 }
-}
+
+// ── SORT ──────────────────────────────────────────────────────────────
+window.__sortRamos = (order, btn) => {
+  sortOrder = order;
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSorted();
+};
 
 // ── DELETE ────────────────────────────────────────────────────────────
 window.__del = async key => {
@@ -895,7 +899,7 @@ window.__del = async key => {
   hideLoading();
 };
 
-// ── COMPRIMIR FOTO (canvas) ───────────────────────────────────────────
+// ── COMPRIMIR FOTO ────────────────────────────────────────────────────
 function compressImage(file, maxWidth = 800, quality = 0.75) {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -915,19 +919,31 @@ function compressImage(file, maxWidth = 800, quality = 0.75) {
   });
 }
 
-// ── FOTO ─────────────────────────────────────────────────────────────
-window.handlePhoto = async e => {
+// ── FOTO ──────────────────────────────────────────────────────────────
+window.__handlePhoto = async e => {
   const f = e.target.files[0]; if (!f) return;
   showLoading('Procesando foto…');
   try {
     photo64 = await compressImage(f);
     const prev = document.getElementById('photo-prev');
-    prev.src = photo64; prev.style.display = 'block';
+    prev.src = photo64;
+    prev.style.display = 'block';
     document.getElementById('compress-info').style.display = 'block';
+    document.getElementById('btn-remove-photo').style.display = 'block';
   } catch(err) {
     document.getElementById('ferr').textContent = '❌ Error al procesar la foto.';
   }
   hideLoading();
+};
+
+window.__removePhoto = () => {
+  photo64 = null;
+  const prev = document.getElementById('photo-prev');
+  prev.src = '';
+  prev.style.display = 'none';
+  document.getElementById('photo-input').value = '';
+  document.getElementById('compress-info').style.display = 'none';
+  document.getElementById('btn-remove-photo').style.display = 'none';
 };
 
 const pzone = document.getElementById('pzone');
@@ -941,35 +957,45 @@ pzone.addEventListener('drop', async e => {
     try {
       photo64 = await compressImage(f);
       const prev = document.getElementById('photo-prev');
-      prev.src = photo64; prev.style.display = 'block';
+      prev.src = photo64;
+      prev.style.display = 'block';
       document.getElementById('compress-info').style.display = 'block';
+      document.getElementById('btn-remove-photo').style.display = 'block';
     } catch(err) {}
     hideLoading();
   }
 });
 
 // ── PIN ───────────────────────────────────────────────────────────────
-window.openPin = () => {
+window.__openPin = () => {
   if (admin) return;
   pinBuf = ''; updPin();
   document.getElementById('pin-err').textContent = '';
   document.getElementById('modal-pin').classList.add('on');
 };
-window.closePin = () => { document.getElementById('modal-pin').classList.remove('on'); pinBuf = ''; };
+window.__closePin = () => {
+  document.getElementById('modal-pin').classList.remove('on');
+  pinBuf = '';
+};
 
 function updPin() {
   document.getElementById('pin-disp').textContent =
     pinBuf.length ? '●'.repeat(pinBuf.length) + '·'.repeat(Math.max(0, 4 - pinBuf.length)) : '····';
 }
-window.pp = d => {
+
+window.__pp = d => {
   if (pinBuf.length >= 6) return;
   pinBuf += d; updPin();
   if (pinBuf.length >= PIN.length) setTimeout(checkPin, 160);
 };
-window.pd = () => { pinBuf = pinBuf.slice(0,-1); updPin(); document.getElementById('pin-err').textContent=''; };
+window.__pd = () => {
+  pinBuf = pinBuf.slice(0, -1);
+  updPin();
+  document.getElementById('pin-err').textContent = '';
+};
 
 function checkPin() {
-  if (pinBuf === PIN) { closePin(); enterAdmin(); }
+  if (pinBuf === PIN) { window.__closePin(); enterAdmin(); }
   else {
     document.getElementById('pin-err').textContent = '❌ Código incorrecto';
     pinBuf = ''; updPin();
@@ -981,103 +1007,181 @@ function enterAdmin() {
   admin = true;
   document.getElementById('admin-top').classList.add('on');
   document.getElementById('logo-ring').classList.add('admin-glow');
-  render();
+  renderSorted();
 }
-window.exitAdmin = () => {
+window.__exitAdmin = () => {
   admin = false;
   document.getElementById('admin-top').classList.remove('on');
   document.getElementById('logo-ring').classList.remove('admin-glow');
-  render();
+  renderSorted();
 };
 
-// ── ADD MODAL ─────────────────────────────────────────────────────────
-window.openAdd = () => {
+// ── HELPERS MODAL ─────────────────────────────────────────────────────
+function setModalMode(isEdit) {
+  const badge  = document.getElementById('modal-mode-badge');
+  const title  = document.getElementById('modal-add-title');
+  const saveBtn = document.getElementById('btn-save');
+
+  if (isEdit) {
+    badge.textContent = '✏️ Editando ramo';
+    badge.className = 'modal-mode-badge edit';
+    title.textContent = '✏️ Editar Ramo';
+    saveBtn.textContent = '💾 Actualizar Ramo';
+    saveBtn.classList.add('edit-mode');
+  } else {
+    badge.textContent = '✨ Nuevo ramo';
+    badge.className = 'modal-mode-badge new';
+    title.textContent = '🌹 Nuevo Ramo';
+    saveBtn.textContent = '💾 Guardar Ramo';
+    saveBtn.classList.remove('edit-mode');
+  }
+}
+
+function resetForm() {
   ['f-nombre','f-flores','f-extras','f-precio','cname'].forEach(id =>
     document.getElementById(id).value = '');
   document.getElementById('f-forma').value  = '';
   document.getElementById('f-estado').value = 'disponible';
   document.getElementById('ferr').textContent = '';
   document.getElementById('photo-prev').style.display = 'none';
+  document.getElementById('photo-prev').src = '';
   document.getElementById('photo-input').value = '';
   document.getElementById('compress-info').style.display = 'none';
+  document.getElementById('btn-remove-photo').style.display = 'none';
   document.getElementById('btn-save').disabled = false;
-  photo64 = null; colors = []; renderChips();
+  photo64 = null;
+  colors  = [];
+  renderChips();
+}
+
+// ── ABRIR MODAL NUEVO RAMO ─────────────────────────────────────────────
+window.__openAdd = () => {
+  editingKey = null;
+  resetForm();
+  setModalMode(false);
   document.getElementById('modal-add').classList.add('on');
 };
-window.closeAdd = () => document.getElementById('modal-add').classList.remove('on');
+window.__closeAdd = () => {
+  document.getElementById('modal-add').classList.remove('on');
+  editingKey = null;
+};
+
+// ── ABRIR MODAL EDITAR RAMO ───────────────────────────────────────────
+window.__editRamo = key => {
+  const r = ramosData[key];
+  if (!r) return;
+
+  editingKey = key;
+  resetForm();   // limpia primero, luego rellena
+
+  // Rellenar campos con los datos del ramo
+  document.getElementById('f-nombre').value = r.nombre  || '';
+  document.getElementById('f-flores').value = r.flores  || '';
+  document.getElementById('f-forma').value  = r.forma   || '';
+  document.getElementById('f-extras').value = r.extras  || '';
+  document.getElementById('f-precio').value = r.precio  || '';
+  document.getElementById('f-estado').value = r.estado  || 'disponible';
+
+  // Colores
+  colors = Array.isArray(r.colors) ? [...r.colors] : [];
+  renderChips();
+
+  // Foto existente
+  if (r.photo) {
+    photo64 = r.photo;
+    const prev = document.getElementById('photo-prev');
+    prev.src = photo64;
+    prev.style.display = 'block';
+    document.getElementById('btn-remove-photo').style.display = 'block';
+    document.getElementById('compress-info').style.display = 'none';
+  }
+
+  setModalMode(true);
+  document.getElementById('modal-add').classList.add('on');
+};
 
 // ── COLORES ───────────────────────────────────────────────────────────
-window.addColor = () => {
+window.__addColor = () => {
   const hex  = document.getElementById('cpicker').value;
   const name = document.getElementById('cname').value.trim() || 'Color';
   colors.push({ hex, name });
   document.getElementById('cname').value = '';
   renderChips();
 };
-window.removeColor = i => { colors.splice(i, 1); renderChips(); };
+window.__removeColor = i => { colors.splice(i, 1); renderChips(); };
+
 function renderChips() {
   document.getElementById('c-chips').innerHTML = colors.map((c, i) => `
     <div class="chip">
       <span class="cdot" style="background:${c.hex}"></span>${c.name}
-      <button onclick="removeColor(${i})">✕</button>
+      <button onclick="window.__removeColor(${i})">✕</button>
     </div>`).join('');
 }
 
-// ── GUARDAR ───────────────────────────────────────────────────────────
-window.saveRamo = async () => {
+// ── GUARDAR / ACTUALIZAR ──────────────────────────────────────────────
+window.__saveRamo = async () => {
   const nombre = document.getElementById('f-nombre').value.trim();
+
   if (!nombre) {
     document.getElementById('ferr').textContent = '⚠️ El nombre es obligatorio.';
     return;
   }
+
   document.getElementById('btn-save').disabled = true;
   document.getElementById('ferr').textContent = '';
 
+  const data = {
+    nombre,
+    flores:  document.getElementById('f-flores').value.trim(),
+    forma:   document.getElementById('f-forma').value,
+    extras:  document.getElementById('f-extras').value.trim(),
+    precio:  document.getElementById('f-precio').value.trim(),
+    estado:  document.getElementById('f-estado').value,
+    colors:  colors,
+    photo:   photo64 || null,
+  };
+
   try {
-    showLoading('Guardando ramo…');
-    await push(ramosRef, {
-      nombre,
-      flores:    document.getElementById('f-flores').value.trim(),
-      forma:     document.getElementById('f-forma').value,
-      extras:    document.getElementById('f-extras').value.trim(),
-      precio:    document.getElementById('f-precio').value.trim(),
-      estado:    document.getElementById('f-estado').value,
-      colors:    colors,
-      photo:     photo64 || null,
-      createdAt: Date.now(),
-    });
+    if (editingKey) {
+      showLoading('Actualizando ramo…');
+      await update(ref(db, `ramos/${editingKey}`), data);
+    } else {
+      showLoading('Guardando ramo…');
+      await push(ramosRef, { ...data, createdAt: Date.now() });
+    }
+
     hideLoading();
-    closeAdd();
+    window.__closeAdd();
+
   } catch (err) {
     hideLoading();
     document.getElementById('ferr').textContent = '❌ Error: ' + err.message;
     document.getElementById('btn-save').disabled = false;
   }
 };
+
+// exponer addColor para el botón inline del modal (tiene onclick directo)
+window.__addColor  = window.__addColor;
+
 </script>
+
 <!-- FAB REDES SOCIALES -->
 <div class="fab-container" id="fab">
-
-    <!-- Botón principal -->
   <button class="fab-main" id="fab-main" onclick="toggleFab()">
     <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
   </button>
 
-  <!-- WhatsApp -->
   <a class="fab-child wa"
      href="https://wa.me/56988860785?text=Hola!%20Vi%20su%20página%20y%20me%20gustaría%20hacer%20un%20pedido%20🌹"
      target="_blank" rel="noopener" data-label="WhatsApp">
     <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
-  <!-- Instagram -->
   <a class="fab-child ig"
      href="https://instagram.com/rosas.cmieres"
      target="_blank" rel="noopener" data-label="Instagram">
     <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
   </a>
-
-
 </div>
 
 <script>
@@ -1085,7 +1189,6 @@ window.saveRamo = async () => {
     document.getElementById('fab').classList.toggle('open');
     document.getElementById('fab-main').classList.toggle('open');
   }
-  // Cierra al tocar fuera
   document.addEventListener('click', e => {
     const fab = document.getElementById('fab');
     if (!fab.contains(e.target)) {
@@ -1096,10 +1199,7 @@ window.saveRamo = async () => {
 </script>
 
 <script>
-  // Bloquear click derecho
   document.addEventListener('contextmenu', e => e.preventDefault());
-
-  // Bloquear F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
   document.addEventListener('keydown', e => {
     if (
       e.key === 'F12' ||
@@ -1111,21 +1211,18 @@ window.saveRamo = async () => {
   });
 </script>
 
-
-
 <script>
-// Floating petals
-(function(){
-  const c=document.getElementById("petals");
-  const p=["🌸","🌺","✿","❀","🌷"];
-  for(let i=0;i<12;i++){
-    const el=document.createElement("div");
-    el.className="petal";
-    el.textContent=p[Math.floor(Math.random()*p.length)];
-    el.style.cssText=`left:${Math.random()*100}%;font-size:${Math.random()*.8+.6}rem;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*15}s;`;
-    c.appendChild(el);
-  }
-})();
+  (function(){
+    const c = document.getElementById("petals");
+    const p = ["🌸","🌺","✿","❀","🌷"];
+    for(let i = 0; i < 12; i++){
+      const el = document.createElement("div");
+      el.className = "petal";
+      el.textContent = p[Math.floor(Math.random() * p.length)];
+      el.style.cssText = `left:${Math.random()*100}%;font-size:${Math.random()*.8+.6}rem;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*15}s;`;
+      c.appendChild(el);
+    }
+  })();
 </script>
 
 </body>
