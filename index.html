@@ -573,6 +573,48 @@
       .mbox { padding:28px 22px; }
       .grid { grid-template-columns:1fr; }
     }
+
+    /* ── FAB INFO (izquierda) ── */
+    .fab-info-btn {
+      position: fixed; bottom: 18px; left: 18px;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--deep2), var(--deep));
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(61,21,37,.35);
+      cursor: pointer; border: none; z-index: 999;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .fab-info-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(61,21,37,.45); }
+    .fab-info-btn svg { width: 26px; height: 26px; fill: #fff; }
+    .fab-info-btn::before {
+      content: ''; position: absolute; inset: 0; border-radius: 50%;
+      background: var(--rose2); opacity: .25;
+      animation: fabPulse 2.8s ease-out infinite;
+    }
+
+    /* ── MODAL INFO ── */
+    #modal-info .mbox { max-width: 500px; max-height: 88vh; overflow-y: auto; scrollbar-width: none; }
+    .info-section { margin-bottom: 22px; }
+    .info-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--deep); letter-spacing: .04em;
+      margin-bottom: 10px; padding-bottom: 7px;
+      border-bottom: 1px solid var(--soft2);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .info-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .info-list li {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-size: .85rem; color: var(--deep2); line-height: 1.5;
+    }
+    .info-list li .iico { flex-shrink: 0; font-size: .9rem; margin-top: 1px; }
+    .info-note {
+      background: var(--blush2); border: 1px solid var(--soft);
+      border-radius: 12px; padding: 12px 16px;
+      font-size: .8rem; color: var(--deep2); line-height: 1.6;
+      text-align: center; margin-top: 6px;
+    }
   </style>
 </head>
 <body>
@@ -1164,6 +1206,59 @@ window.__saveRamo = async () => {
 window.__addColor  = window.__addColor;
 
 </script>
+
+<!-- FAB INFORMACIÓN (izquierda) -->
+<button class="fab-info-btn" onclick="document.getElementById('modal-info').classList.add('on')" title="Información">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+</button>
+
+<!-- MODAL INFORMACIÓN -->
+<div class="overlay" id="modal-info">
+  <div class="mbox">
+    <button class="mclose" onclick="document.getElementById('modal-info').classList.remove('on')">✕</button>
+    <div style="text-align:center;margin-bottom:22px;">
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.55rem;color:var(--deep);margin-bottom:4px;">ℹ️ Información</h2>
+      <p style="font-size:.82rem;color:var(--deep2);letter-spacing:.05em;">Todo lo que necesitas saber</p>
+    </div>
+
+    <!-- ✏️ SECCIÓN 1: ENTREGAS — edita el texto aquí -->
+    <div class="info-section">
+      <div class="info-section-title">🚚 Entregas</div>
+      <ul class="info-list">
+        <li><span class="iico">📍</span> Hacemos despacho a domicilio dentro de la comuna de Pudahuel (costó adicional entre los 1.000 - 5.000)</li>
+        <li><span class="iico">🕐</span> Coordina el horario de entrega (hasta las 16:00pm) por Instagram o WhatsApp.</li>
+        <li><span class="iico">💵</span> El costo de entrega se coordina según la distancia.</li>
+        <li><span class="iico">📦</span> También puedes retirar en persona, sin costo extra en estación Laguna Sur L5 🚇 y en otras estaciones con recargo.</li>
+      </ul>
+    </div>
+
+    <!-- ✏️ SECCIÓN 2: ACCESORIOS EXTRAS — edita el texto aquí -->
+    <div class="info-section">
+      <div class="info-section-title">🧸 Accesorios & Extras (costo adicional dependiendo del accesorio)</div>
+      <ul class="info-list">
+        <li><span class="iico">🧸</span> Peluches disponibles para agregar al ramo.</li>
+        <li><span class="iico">🍫</span> Chocolates y dulces como complemento.</li>
+        <li><span class="iico">💌</span> Tarjetas personalizadas con tu mensaje.</li>
+        <li><span class="iico">✨</span> Pregunta por otros accesorios disponibles.</li>
+      </ul>
+    </div>
+
+    <!-- ✏️ SECCIÓN 3: PEDIDOS — edita el texto aquí -->
+    <div class="info-section">
+      <div class="info-section-title">📋 Pedidos</div>
+      <ul class="info-list">
+        <li><span class="iico">⏳</span> Los pedidos se realizan con anticipación.</li>
+        <li><span class="iico">💳</span> Se acepta transferencia y efectivo.</li>
+        <li><span class="iico">🌹</span> Puedes pedir colores específicos de rosas.</li>
+      </ul>
+    </div>
+
+    <!-- ✏️ NOTA FINAL — edita el texto aquí -->
+    <div class="info-note">
+      💬 ¿Tienes dudas? Escríbenos por Instagram <strong>@rosas.cmieres</strong> o WhatsApp 🌸
+    </div>
+  </div>
+</div>
 
 <!-- FAB REDES SOCIALES -->
 <div class="fab-container" id="fab">
